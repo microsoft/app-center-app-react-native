@@ -24,15 +24,15 @@
  *
  */
 
-import * as types from '../constants/ActionTypes';
+import * as types from './types';
 
-export function requestAppList(isRefreshing, loading, typeId, isLoadMore, page = 1) {
+export function requestAppList(isRefreshing, loading, tokenId, isLoadMore, page = 1) {
   return {
     type: types.REQUEST_APP_LIST,
     isRefreshing,
     loading,
     isLoadMore,
-    typeId,
+    tokenId,
     page,
   };
 }
@@ -46,10 +46,10 @@ export function fetchAppList(isRefreshing, loading, isLoadMore = false) {
   };
 }
 
-export function receiveAppList(appList, typeId) {
+export function receiveAppList(appList, tokenId) {
   return {
     type: types.RECEIVE_APP_LIST,
     appList,
-    typeId
+    tokenId
   };
 }

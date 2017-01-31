@@ -53,11 +53,16 @@ react-native start
 ```
 ### Run Test
 
+Current test includes action test, reducer test, middleware test and component test.
+
 ```
 npm test
 ```
 
+
+
 ## Contributing
+
 
 **PRs are Welcome**
 

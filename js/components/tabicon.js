@@ -25,20 +25,36 @@
  */
 
 import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const store = configureStore();
+export default class TabIcon extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Icon
+          color={this.props.selected ? '#3e9ce9' : '#999999'}
+          name={this.props.iconName}
+          size={25}
+        />
+        <Text style={[styles.title, { color: this.props.selected ? '#3e9ce9' : '#999999' }]}>
+          {this.props.title}
+        </Text>
+      </View>
+    );
+  }
+}
 
-//run root saga
-store.runSaga(rootSaga);
-
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
-
-export default setup;
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 14
+  }
+});

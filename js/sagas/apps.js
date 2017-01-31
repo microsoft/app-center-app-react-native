@@ -24,21 +24,36 @@
  *
  */
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+import {put, take, call, fork} from 'redux-saga/effects';
 
-const store = configureStore();
+import * as types from '../actions/types';
+import {fetchAppList, receiveAppList} from '../actions/apps';
+import {toastShort} from '../utils/ToastUtil';
+import {request} from '../utils/RequestUtil';
 
-//run root saga
-store.runSaga(rootSaga);
+const get_apps   = "/v0.1/apps";
 
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
+export function* requestAppList(isRefreshing, loading, tokenId, isLoadMore, page){
+	try{
+		yield put(fetchAppList(isRefreshing, loading, isLoadMore));
+		const appList = yield call(request, get_apps, 'get');
+		//DEBUG here, log
+		yield put(receiveAppList(appList,tokenId));		
+	}catch(error){
+		yield put(receiveAppList([], tokenId));
+		toastShort('Network Error, Please Retry!!!');
+	}
+}
 
-export default setup;
+export function* watchRequestAppList(){
+	while(true){
+		const {
+	      isRefreshing,
+	      loading,
+	      tokenId,
+	      isLoadMore,
+	      page
+    	} = yield take(types.REQUEST_APP_LIST);
+    	yield fork(requestAppList, isRefreshing, loading, tokenId, isLoadMore, page);
+	}
+}

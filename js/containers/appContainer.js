@@ -25,20 +25,22 @@
  */
 
 import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Apps from '../pages/apps';
+import * as appsCreators from '../actions/apps';
+// import CodePush from 'react-native-code-push';
 
-const store = configureStore();
+class AppsContainer extends React.Component{
+	componentDidMount(){
+		//TODO codepush		
+	}
 
-//run root saga
-store.runSaga(rootSaga);
+	render(){
+		return (
+			<Apps {...this.props}/>
+		);		
+	}
+}
 
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
-
-export default setup;
+export default connect()(AppsContainer);

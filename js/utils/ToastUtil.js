@@ -24,21 +24,20 @@
  *
  */
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+ import {
+  Alert,
+  ToastAndroid,
+  Platform
+} from 'react-native';
 
-const store = configureStore();
+export const toastShort = (content, isAlert) => {
+  if (isAlert || Platform.OS === 'ios') {
+    Alert.alert(
+      'Alert',
+      content.toString()
+    );
+  } else {
+    ToastAndroid.show(content.toString(), ToastAndroid.SHORT);
+  }
+};
 
-//run root saga
-store.runSaga(rootSaga);
-
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
-
-export default setup;

@@ -24,21 +24,36 @@
  *
  */
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+const HOST = "https://api.mobile.azure.com";
 
-const store = configureStore();
-
-//run root saga
-store.runSaga(rootSaga);
-
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
-
-export default setup;
+export const request = (url, method, body) => {
+	let isOk;
+	return new Promise((resolve, reject) => {
+		fetch(HOST + url, {
+			method,
+			headers:{
+				'Accept': 'application/json',
+				'X-API-Token': '2eb6d0e2250779ad71acde8f383158b48aa0b4b6'
+			},
+			body
+		})
+		.then((response) => {
+			if(response.ok){
+				isOk = true;
+			}else{
+				isOk = false;
+			}
+			return response.json();
+		})
+		.then((responseData) => {
+			if(isOk){
+				resolve(responseData);
+			} else {
+				reject(responseData);
+			}
+		})
+		.catch((error) => {
+			reject(error);
+		});
+	}); 
+};

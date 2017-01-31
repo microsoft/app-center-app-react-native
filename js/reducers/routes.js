@@ -24,21 +24,19 @@
  *
  */
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+import {ActionConst} from 'react-native-router-flux';
 
-const store = configureStore();
+const initialState = {
+	scene: {},
+};
 
-//run root saga
-store.runSaga(rootSaga);
-
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
-);
-
-export default setup;
+export default function reducer(state = initialState, action = {}){
+	switch(action.type){
+		case ActionConst.FOCUS:
+			return Object.assign({}, state, {
+		        scene: action.scene
+		      });
+		default:
+			return state;		
+	}
+}

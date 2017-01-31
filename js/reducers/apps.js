@@ -24,7 +24,7 @@
  *
  */
 
-import * as types from '../constants/ActionTypes';
+import * as types from '../actions/types';
 
 const initialState = {
 	isRefreshing: false,
@@ -47,9 +47,20 @@ export default function app(state = initialState, action){
 				isRefreshing: false,
 				isLoadMore: false,
 				noMore: action.appList.length == 0,
-				appList: state				
+				loading: state.appList[action.tokenId] === undefined,
+				appList: state.isLoadMore ? loadMore(state, action) : combine(state, action)
 			});
 		default:
 			return state;
 	}	
+}
+
+function combine(state, action){
+	state.appList[action.tokenId] = action.appList;
+	return state.appList;
+}
+
+function loadMore(state, action){
+	state.appList[action.tokenId] = state.appList[action.tokenId].concat(action.tokenId);
+	return state.appList;
 }

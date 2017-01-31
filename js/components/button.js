@@ -24,21 +24,41 @@
  *
  */
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import rootSaga from './sagas/index';
-import MobileCenter from './containers/mobilecenter';
+import React, { PropTypes } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity
+} from 'react-native';
 
-const store = configureStore();
+const propTypes = {
+  onPress: PropTypes.func,
+  disabled: PropTypes.bool,
+  style: Text.propTypes.style,
+  containerStyle: View.propTypes.style,
+  text: PropTypes.string,
+  activeOpacity: PropTypes.number
+};
 
-//run root saga
-store.runSaga(rootSaga);
-
-const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
+const Button = ({ onPress, disabled, style, containerStyle, text, activeOpacity }) => (
+  <TouchableOpacity
+    style={containerStyle}
+    onPress={onPress}
+    disabled={disabled}
+    activeOpacity={activeOpacity}
+  >
+    <Text style={style}>
+      {text}
+    </Text>
+  </TouchableOpacity>
 );
 
-export default setup;
+Button.propTypes = propTypes;
+
+Button.defaultProps = {
+  onPress() {},
+  disabled: false,
+  activeOpacity: 0.8
+};
+
+export default Button;
