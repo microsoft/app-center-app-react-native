@@ -25,36 +25,34 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Apps from '../pages/apps';
-import * as appsCreators from '../actions/apps';
-// import CodePush from 'react-native-code-push';
+import {
+	ActivityIndicator,
+	Text,
+	StyleSheet,
+	View
+} from 'react-native';
 
-class AppsContainer extends React.Component{
-	componentDidMount(){
-		//TODO codepush
-	}
-
-	render(){
-		return (
-			<Apps {...this.props}/>
-		);		
-	}
-}
-
-const mapStateToProps = (state) => {
-	const { app } = state;
-	return {
-		app
-	};
+const LoadingView = () => {
+	<View Style={styles.loading}>
+		<ActivityIndicator 
+		 size="large"
+		 color="#3e9ce9"
+		/>
+		<Text style={styles.loadingText}>Loading Data...</Text>
+	</View>
 };
 
-const mapDispatchToProps = (dispatch) => {
-	const appsActions = bindActionCreators(appsCreators, dispatch);
-	return {
-		appsActions
-	};
-};
+const styles = StyleSheet.create({
+	loading: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: 'white'
+	},
+	loadingText: {
+		marginTop: 10,
+		textAlign: 'center'		
+	}
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppsContainer);
+export default LoadingView;

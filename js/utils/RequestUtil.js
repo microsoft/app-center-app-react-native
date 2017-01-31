@@ -26,6 +26,8 @@
 
 const HOST = "https://api.mobile.azure.com";
 
+export const TOKENID = "2eb6d0e2250779ad71acde8f383158b48aa0b4b6";
+
 export const request = (url, method, body) => {
 	let isOk;
 	return new Promise((resolve, reject) => {
@@ -33,7 +35,7 @@ export const request = (url, method, body) => {
 			method,
 			headers:{
 				'Accept': 'application/json',
-				'X-API-Token': '2eb6d0e2250779ad71acde8f383158b48aa0b4b6'
+				'X-API-Token': TOKENID
 			},
 			body
 		})
