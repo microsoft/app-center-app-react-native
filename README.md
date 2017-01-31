@@ -33,7 +33,7 @@ _We would like to thank and appreciate the efforts that the below library author
 
 ## Development Workflow
 
-### Step One
+<!--### Step One
 
 ```
 npm install -g react-native-cli
@@ -44,21 +44,21 @@ npm install -g react-native-cli
 npm install
 react-native link react-native-device-info
 react-native link react-native-vector-icons
-```
+```-->
 
-### Step Three
+<!--### Step-->
 
 ```
+npm install
 react-native start
 ```
-### Run Test
+<!--### Run Test
 
-Current test includes action test, reducer test, middleware test and component test.
+Current test includes action test, reducer test, middleware test and component test.-->
 
-```
+<!--```
 npm test
-```
-
+```-->
 
 
 ## Contributing
