@@ -37,8 +37,7 @@ export function* requestAppList(isRefreshing, loading, tokenId, isLoadMore, page
 	try{
 		yield put(fetchAppList(isRefreshing, loading, isLoadMore));
 		const appList = yield call(request, get_apps, 'get');
-		//DEBUG here, log
-		yield put(receiveAppList(appList,tokenId));		
+		yield put(receiveAppList(appList,tokenId));
 	}catch(error){
 		yield put(receiveAppList([], tokenId));
 		toastShort('Network Error, Please Retry!!!');

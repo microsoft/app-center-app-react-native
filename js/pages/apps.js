@@ -54,17 +54,29 @@ const pages = [];
 let loadMoreTime = 0;
 let currentLoadMoreTypeId;
 
+data = [
+  {
+    "display_name": "Calculator-Test",
+    "owner": {
+      "display_name": "Bo Kang",
+    },
+  },
+  {
+    "display_name": "Moody",
+    "owner": {
+      "display_name": "Bo Kang",
+    },
+  },
+];
+
 export default class Apps extends React.Component{
 
   constructor(props){
     super(props);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    const { app } = this.props;
     this.state = {
-      dataSource: ds.cloneWithRows(app),
+      dataSource: ds.cloneWithRows(data),
       tokenId: TOKENID
     };
     this.renderItem = this.renderItem.bind(this);
@@ -72,12 +84,10 @@ export default class Apps extends React.Component{
 
 	componentDidMount(){
     const {appsActions} = this.props;
-      DeviceEventEmitter.addListener('loadApps', (tokenId) => {
-        appsActions.requestAppList(false, true, tokenId);
-        pages.push(1);
-      this.setState({
-        tokenId
-      });
+    DeviceEventEmitter.addListener('loadApps', (tokenId) => {
+      appsActions.requestAppList(false, true, tokenId);
+      pages.push(1);
+      this.setState({tokenId});
     });
 
     // InteractionManager.runAfterInteractions(
@@ -117,11 +127,16 @@ export default class Apps extends React.Component{
   renderItem(app){
       return (
           <View style={styles.containerItem}>
+           <View style={styles.itemRightContent} >
+             <Text style={styles.title}>
+                {app.display_name}
+             </Text>
              <View style={styles.itemRightBottom} >
               <Text style={styles.userName} >
-                {app.appList}
+                {app.owner.display_name}
               </Text>
             </View>
+          </View>            
           </View>
       );
   }
@@ -130,7 +145,6 @@ export default class Apps extends React.Component{
 		const { app } = this.props;
     return (
        <ListView
-        initialListSize={1}
         dataSource={this.state.dataSource}
         renderRow={this.renderItem}
         style={styles.listView}

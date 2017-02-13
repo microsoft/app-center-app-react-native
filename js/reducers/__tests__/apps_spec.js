@@ -24,32 +24,24 @@
  *
  */
 
-import * as types from '../actions/types';
+/* global expect */
 
-const initialState = {
-	isRefreshing: false,
-	loading: false,
-	isLoadMore: false,
-	noMore: false,
-	appList: []
-};
+import app from '../apps';
+import { receiveAppList } from '../../actions/apps';
+import * as types from '../../actions/types';
+import { TOKENID } from '../../utils/RequestUtil';
 
-export default function app(state = initialState, action){
-	switch(action.type){
-		case types.FETCH_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: action.isRefreshing,
-				loading: action.loading,
-				isLoadMore: action.isLoadMore
-			});
-		case types.RECEIVE_APP_LIST:
-			return Object.assign({}, state, {
+describe('app reducer test', () => {
+	it(`should handle RECEIVE_APP_LIST`, () => {
+		expect(
+		  app({}, receiveAppList(['hokeyapp', 'test'], TOKENID))
+		).toEqual(
+			{
 				isRefreshing: false,
 				isLoadMore: false,
-				noMore: action.appList.length == 0,
-				appList: action.appList
-			});
-		default:
-			return state;
-	}	
-}
+				noMore: false,
+				appList: ['hokeyapp', 'test']
+			}
+		)
+	})
+});

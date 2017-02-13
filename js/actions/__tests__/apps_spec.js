@@ -24,32 +24,18 @@
  *
  */
 
-import * as types from '../actions/types';
+ /* global expect, test action */
 
-const initialState = {
-	isRefreshing: false,
-	loading: false,
-	isLoadMore: false,
-	noMore: false,
-	appList: []
-};
+import * as types from '../types';
+import {receiveAppList} from '../apps';
+import TOKENID from '../../utils/RequestUtil';
 
-export default function app(state = initialState, action){
-	switch(action.type){
-		case types.FETCH_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: action.isRefreshing,
-				loading: action.loading,
-				isLoadMore: action.isLoadMore
-			});
-		case types.RECEIVE_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: false,
-				isLoadMore: false,
-				noMore: action.appList.length == 0,
-				appList: action.appList
-			});
-		default:
-			return state;
-	}	
-}
+describe('test apps action', () => {
+	it('receiveAppList', () => {
+		expect(receiveAppList('hockey', TOKENID)).toEqual({
+			type: types.RECEIVE_APP_LIST,
+			appList: 'hockey',
+			tokenId: TOKENID
+		})
+	  })
+});

@@ -24,32 +24,53 @@
  *
  */
 
-import * as types from '../actions/types';
+import { put, call } from 'redux-saga/effects';
+import { requestAppList } from '../apps';
+import { request, TOKENID } from '../../utils/RequestUtil';
+import { fetchAppList, receiveAppList } from '../../actions/apps';
 
-const initialState = {
-	isRefreshing: false,
-	loading: false,
-	isLoadMore: false,
-	noMore: false,
-	appList: []
-};
+/* global expect */
+describe('apps saga tests', () => {
+	const {
+		isRefreshing,
+		loading,
+		tokenId,
+		isLoadMore,
+		page
+	} = {
+		isRefreshing: false,
+		loading: false,
+		tokenId: request.TOKENID,
+		isLoadMore: false,
+		page: 1	
+	};
+	const generator  = requestAppList(
+		isRefreshing,
+		loading,
+		tokenId,
+		isLoadMore,
+		page
+	);
+	const mockArticleList = {
+		showapi_res_body: {
+			pagebean: {
+				contentlist: [
+			],
+		   },
+		},
+	};
+	const step = input => generator.next(input).value;
 
-export default function app(state = initialState, action){
-	switch(action.type){
-		case types.FETCH_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: action.isRefreshing,
-				loading: action.loading,
-				isLoadMore: action.isLoadMore
-			});
-		case types.RECEIVE_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: false,
-				isLoadMore: false,
-				noMore: action.appList.length == 0,
-				appList: action.appList
-			});
-		default:
-			return state;
-	}	
-}
+	it(`should put(fetchAppList(${isRefreshing}, ${loading}, ${isLoadMore}))`, () => {
+    	const next = step();
+    	// console.log(next);
+    	const tt = put(fetchAppList(isRefreshing, loading, isLoadMore));
+    	// console.log(tt);
+    	// expect(next).toEqual();
+  	});
+
+	it('just for fun', () => {
+		const tt = 1;
+		expect(tt).toEqual(1);		
+	});
+});
