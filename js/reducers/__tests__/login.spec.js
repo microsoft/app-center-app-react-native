@@ -24,35 +24,61 @@
  *
  */
 
-import React from 'react';
-import {
-	ActivityIndicator,
-	Text,
-	StyleSheet,
-	View
-} from 'react-native';
+import login from '../login';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../../actions/types';
 
-const LoadingView = () => {
-	<View Style={styles.loading}>
-		<ActivityIndicator 
-		 size="large"
-		 color="#3e9ce9"
-		/>
-		<Text style={styles.loadingText}>Loading Data...</Text>
-	</View>
-};
+describe('Reducers/ login', () => {
 
-const styles = StyleSheet.create({
-	loading: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: 'white'
-	},
-	loadingText: {
-		marginTop: 10,
-		textAlign: 'center'		
-	}
+  function getInitState() {
+    return {
+      status: 'init'
+    };
+  }
+
+  let state = {};
+  beforeEach(() => {
+    state = getInitState();      
+  });
+
+  it('should handle initial state', () => {
+    expect(
+        login(state, {})
+     ).toEqual(
+         { status: 'init' }
+     );
+  });
+
+  it('should handle request login', () => {
+    expect(
+          login(state, {
+            type: LOGIN_REQUEST
+          })
+      ).toEqual({
+        status: 'loading'
+      });
+  });
+
+  it('should handle login success', () => {
+    expect(login(state, {
+      type: LOGIN_SUCCESS,
+      response: {
+        username: 'denny',
+        token: '12314'
+      }
+    })).toEqual({
+      status: 'logined', 
+      username: 'denny',
+      token: '12314'
+    });
+  });
+
+  it('should handle login error', () => {
+    expect(login(state, {
+      type: LOGIN_ERROR,
+      error: 'error message'
+    })).toEqual({
+      status: 'error',
+      error: 'error message'
+    });
+  });
 });
-
-export default LoadingView;

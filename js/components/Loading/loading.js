@@ -25,19 +25,29 @@
  */
 
 import React from 'react';
-import { StyleSheet, Image, Text, TextInput, Linking, View} from 'react-native';
+import { ActivityIndicator, Text, StyleSheet, View } from 'react-native';
 
-import DeviceInfo from 'react-native-device-info';
-import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Button from '../components/button';
+const LoadingView = () => {
+  <View Style={styles.loading}>
+    <ActivityIndicator
+      size="large"
+      color="#3e9ce9"
+    />
+    <Text style={styles.loadingText}>Loading Data...</Text>
+  </View>;
+};
 
-export default class Notification extends React.Component{
-	render(){
-		return (
-		  <View>
-		  	<Text> TODO: Push Notification </Text>
-		  </View>
-		);
-	}
-}
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  loadingText: {
+    marginTop: 10,
+    textAlign: 'center'
+  }
+});
+
+export default LoadingView;

@@ -24,24 +24,36 @@
  *
  */
 
-/* global expect */
+import {  } from 'redux-saga';
+import { takeEvery, call, put, fork } from 'redux-saga/effects';
 
-import app from '../apps';
-import { receiveAppList } from '../../actions/apps';
-import * as types from '../../actions/types';
-import { TOKENID } from '../../utils/RequestUtil';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../actions/types';
 
-describe('app reducer test', () => {
-	it(`should handle RECEIVE_APP_LIST`, () => {
-		expect(
-		  app({}, receiveAppList(['hokeyapp', 'test'], TOKENID))
-		).toEqual(
-			{
-				isRefreshing: false,
-				isLoadMore: false,
-				noMore: false,
-				appList: ['hokeyapp', 'test']
-			}
-		)
-	})
-});
+import { loginAPI } from '../utils/RequestUtil';
+
+export function* watchRequestLogin() {
+  yield takeEvery(LOGIN_REQUEST, loginFlow);
+}
+
+export function* loginFlow(action) {
+  yield fork(authorize,
+        {username: action.username, password: action.password });
+}
+
+export function* authorize({username, password}) {
+  try {
+    const response = yield call(loginAPI, {
+      username,
+      password
+    });
+    yield put({
+      type: LOGIN_SUCCESS,
+      response
+    });
+  } catch (error) {
+    yield put({
+      type: LOGIN_ERROR,
+      error
+    });
+  }
+}

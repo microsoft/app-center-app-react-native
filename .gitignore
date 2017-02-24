@@ -2,6 +2,8 @@
 #
 .DS_Store
 
+.vscode/
+
 # Xcode
 #
 build/
@@ -51,3 +53,6 @@ android/app/libs
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+js/experiment/
+temp.md

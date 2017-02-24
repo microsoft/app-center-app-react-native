@@ -13,10 +13,12 @@
     "react": "~15.4.0-rc.4",
     "react-native": "0.40.0",
     "react-native-code-push": "^1.17.0-beta",
+    "react-native-css": "^1.2.47",
     "react-native-device-info": "^0.9.9",
     "react-native-push-notification": "^2.2.1",
     "react-native-router-flux": "^3.37.0",
     "react-native-scrollable-tab-view": "^0.7.0",
+    "react-native-searchbar": "^1.7.0",
     "react-native-send-intent": "^1.0.14",
     "react-native-vector-icons": "^4.0.0",
     "react-redux": "^5.0.2",
@@ -25,7 +27,8 @@
     "redux-persist": "^4.0.1",
     "redux-saga": "^0.14.2",
     "redux-thunk": "^2.1.0",
-    "reselect": "^2.5.4"
+    "reselect": "^2.5.4",
+    "tcomb-form-native": "^0.6.5"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

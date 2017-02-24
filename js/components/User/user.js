@@ -25,19 +25,14 @@
  */
 
 import React from 'react';
-import { StyleSheet, Image, Text, TextInput, Linking, View} from 'react-native';
+import { Text, View } from 'react-native';
 
-import DeviceInfo from 'react-native-device-info';
-import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Button from '../components/button';
-
-export default class User extends React.Component{
-	render(){
-		return (
-		  <View>
-		  	<Text> TODO: Render User Information.</Text>
-		  </View>
-		);
-	}
+export default class User extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text> TODO: Render User Information.</Text>
+      </View>
+    );
+  }
 }

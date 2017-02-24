@@ -24,53 +24,15 @@
  *
  */
 
-import { put, call } from 'redux-saga/effects';
-import { requestAppList } from '../apps';
-import { request, TOKENID } from '../../utils/RequestUtil';
-import { fetchAppList, receiveAppList } from '../../actions/apps';
+import React from 'react';
+import { Text, View } from 'react-native';
 
-/* global expect */
-describe('apps saga tests', () => {
-	const {
-		isRefreshing,
-		loading,
-		tokenId,
-		isLoadMore,
-		page
-	} = {
-		isRefreshing: false,
-		loading: false,
-		tokenId: request.TOKENID,
-		isLoadMore: false,
-		page: 1	
-	};
-	const generator  = requestAppList(
-		isRefreshing,
-		loading,
-		tokenId,
-		isLoadMore,
-		page
-	);
-	const mockArticleList = {
-		showapi_res_body: {
-			pagebean: {
-				contentlist: [
-			],
-		   },
-		},
-	};
-	const step = input => generator.next(input).value;
-
-	it(`should put(fetchAppList(${isRefreshing}, ${loading}, ${isLoadMore}))`, () => {
-    	const next = step();
-    	// console.log(next);
-    	const tt = put(fetchAppList(isRefreshing, loading, isLoadMore));
-    	// console.log(tt);
-    	// expect(next).toEqual();
-  	});
-
-	it('just for fun', () => {
-		const tt = 1;
-		expect(tt).toEqual(1);		
-	});
-});
+export default class Notification extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text> TODO: Push Notification </Text>
+      </View>
+    );
+  }
+}

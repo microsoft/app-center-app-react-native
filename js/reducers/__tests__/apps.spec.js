@@ -24,18 +24,56 @@
  *
  */
 
- /* global expect, test action */
+import apps from '../apps';
+import {REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR} from '../../actions/types';
 
-import * as types from '../types';
-import {receiveAppList} from '../apps';
-import TOKENID from '../../utils/RequestUtil';
+describe('Reducers/ apps', () => {
+  function getInitState() {
+    return {
+      status: 'init'
+    };
+  }
+  let state = {};
+  beforeEach(() => {
+    state = getInitState();
+  });
 
-describe('test apps action', () => {
-	it('receiveAppList', () => {
-		expect(receiveAppList('hockey', TOKENID)).toEqual({
-			type: types.RECEIVE_APP_LIST,
-			appList: 'hockey',
-			tokenId: TOKENID
-		})
-	  })
+  it('should handle initial state', () => {
+    expect(
+        apps(state, {})
+     ).toEqual(
+         { status: 'init' }
+     );
+  });
+  it('should handle request apps', () => {
+    expect(
+          apps(state, {
+            type: REQUEST_APPS
+          })
+      ).toEqual({
+        status: 'isFetching'
+      });
+  });
+  it('should handle request apps success', () => {
+    expect(apps(state, {
+      type: RECEIVE_APPS,
+      response: {
+        apps: ['BOA', 'Chase'],
+        receivedAt: '12314'
+      }
+    })).toEqual({
+      status: 'receiveapps',
+      apps: ['BOA', 'Chase'],
+      lastUpdated: '12314'
+    });
+  });
+  it('should handle request apps error', () => {
+    expect(apps(state, {
+      type: RECEIVE_APPS_ERROR,
+      error: 'error message'
+    })).toEqual({
+      status: 'error',
+      error: 'error message'
+    });
+  });
 });

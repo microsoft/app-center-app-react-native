@@ -24,7 +24,7 @@
  *
  */
 
-import React, {PropTypes} from 'react';
+import React, { propTypes } from 'react';
 import { StyleSheet,
 		 ListView,
 		 RefreshControl,
@@ -38,42 +38,18 @@ import { StyleSheet,
 		 View,
 		 DeviceEventEmitter,
 		 Platform,
-		 AlertIOS} from 'react-native';
+		 AlertIOS } from 'react-native';
 
-import LoadingView from '../components/loading';
-import { toastShort } from '../utils/ToastUtil';
-import Storage from '../utils/StorageUtil';
-import { TOKENID } from '../utils/RequestUtil';
+import LoadingView from '../Loading/loading';
+import { toastShort } from '../../utils/ToastUtil';
+import Storage from '../../utils/StorageUtil';
+import SearchBar from 'react-native-searchbar';
 
-const propTypes = {
-	appsActions: PropTypes.object,
-	app: PropTypes.object.isRequired
-};
+export default class Apps extends React.Component {
 
-const pages = [];
-let loadMoreTime = 0;
-let currentLoadMoreTypeId;
-
-data = [
-  {
-    "display_name": "Calculator-Test",
-    "owner": {
-      "display_name": "Bo Kang",
-    },
-  },
-  {
-    "display_name": "Moody",
-    "owner": {
-      "display_name": "Bo Kang",
-    },
-  },
-];
-
-export default class Apps extends React.Component{
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     this.state = {
       dataSource: ds.cloneWithRows(data),
@@ -82,75 +58,18 @@ export default class Apps extends React.Component{
     this.renderItem = this.renderItem.bind(this);
   }
 
-	componentDidMount(){
-    const {appsActions} = this.props;
-    DeviceEventEmitter.addListener('loadApps', (tokenId) => {
-      appsActions.requestAppList(false, true, tokenId);
-      pages.push(1);
-      this.setState({tokenId});
-    });
-
-    // InteractionManager.runAfterInteractions(
-    //   Storage.get('getTokenId')
-    //     .then((tokenIds) => {
-    //         if(!tokenIds){
-    //           return;
-    //         }             
-    //         //TODO
-    //       }
-    //     );
-	}
-
-	componentWillReceiveProps(nextProps){
-    const {app}  = this.props;
-    if (app.isLoadMore && !nextProps.app.isLoadMore && !nextProps.app.isRefreshing){
-      if (nextProps.app.noMore) {
-        toastShort('no more data');        
-      }
-    }
-	}
-
-	componentWillUnmount(){
-    DeviceEventEmitter.removeAllListeners('loadApps');
-	}
-
-  onRefresh(tokenId){
-    const { appsActions } = this.props;
-    appsActions.requestAppList(true, false, tokenId);
-  }
-
-  onPress(app){
-    const { routes } = this.context;
-    //TODO
-  }
-
-  renderItem(app){
-      return (
-          <View style={styles.containerItem}>
-           <View style={styles.itemRightContent} >
-             <Text style={styles.title}>
-                {app.display_name}
-             </Text>
-             <View style={styles.itemRightBottom} >
-              <Text style={styles.userName} >
-                {app.owner.display_name}
-              </Text>
-            </View>
-          </View>            
-          </View>
-      );
-  }
-
-	render(){
-		const { app } = this.props;
+  render() {
+    const { app } = this.props;
     return (
-       <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderItem}
-        style={styles.listView}
-       />
+      <View>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderItem}
+          style={styles.listView}
+        />
+      </View>
     );
-	}
+  }
 }
 
 const styles = StyleSheet.create({

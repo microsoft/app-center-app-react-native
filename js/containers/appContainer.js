@@ -26,35 +26,21 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Apps from '../pages/apps';
-import * as appsCreators from '../actions/apps';
-// import CodePush from 'react-native-code-push';
+import Apps from '../components/Apps/apps';
+import Login from '../components/Login';
+import { loginRequest } from '../actions/login';
 
-class AppsContainer extends React.Component{
-	componentDidMount(){
-		//TODO codepush
-	}
-
-	render(){
-		return (
-			<Apps {...this.props}/>
-		);		
-	}
+class AppsContainer extends React.Component {
+  render() {
+    return (
+      <Login />
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-	const { app } = state;
-	return {
-		app
-	};
+  const { login, apps } = state;
+  return { login, apps };
 };
 
-const mapDispatchToProps = (dispatch) => {
-	const appsActions = bindActionCreators(appsCreators, dispatch);
-	return {
-		appsActions
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppsContainer);
+export default connect(mapStateToProps)(AppsContainer);

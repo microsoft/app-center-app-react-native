@@ -25,31 +25,22 @@
  */
 
 import React from 'react';
-import { StyleSheet, Image, Text, TextInput, Linking, View} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
-import DeviceInfo from 'react-native-device-info';
-import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Button from '../components/button';
-
-
-
-class About extends React.Component{
-	render(){
-		return (
-		  <View style={styles.container}>
-         <View style={styles.content}>
+class About extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.content}>
           <View style={styles.center}>
-
             <Text style={styles.title}>
-              React Native Mobile Center 
+              React Native Mobile Center
             </Text>
-            
           </View>
         </View>
-		  </View>
-		);
-	}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

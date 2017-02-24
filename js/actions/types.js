@@ -24,51 +24,21 @@
  *
  */
 
-// GET /v0.1/api_tokens
-export const LOGGED_IN  = 'LOGGED_IN';
-export const LOGGED_OUT = 'LOGGED_OUT';
+// REST APIs
+// https://docs.mobile.azure.com/api/#/
 
-// GET /v0.1/apps
-export const REQUEST_APP_LIST = 'REQUEST_APP_LIST';
-export const FETCH_APP_LIST = 'FETCH_APP_LIST';
-export const RECEIVE_APP_LIST = 'RECEIVE_APP_LIST';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 
-// GET /v0.1/user
-export const LOADED_USER = 'LOADED_USER';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
-// GET /v0.1/apps/{owner_name}/{app_name}
+export const REQUEST_APPS = 'REQUEST_APP_LIST';
+export const RECEIVE_APPS = 'RECEIVE_APP_LIST';
+export const RECEIVE_APPS_ERROR = 'RECEIVE_APP_LIST_ERROR';
 
-// GET /v0.1/apps/{owner_name}/{app_name}/users
-
-// GET /v0.1/apps/{owner_name}/{app_name}/testers
-
-/*
- *
- * build action types
- *
- */
-
-// GET /v0.1/apps/{owner_name}/{app_name}/distribution_groups
-
-// GET /v0.1/apps/{owner_name}/{app_name}/distribution_groups/{distribution_group_name}
-
-// GET /v0.1/apps/{owner_name}/{app_name}/distribution_groups/{distribution_group_name}/members
-
-
-/*
- *
- * distribute action types
- *
- */
-
-/*
- *
- * crash action types
- *
- */
-
-/*
- *
- * analytics action types
- *
- */
+export const REQUEST_USER = 'REQUEST_USER';
+export const FETCH_USER = 'FETCH_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';

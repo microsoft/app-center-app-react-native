@@ -25,16 +25,15 @@
  */
 
 import React from 'react';
-
-import { StyleSheet, Navigator, View, Text } from 'react-native';
+import { StyleSheet, Navigator } from 'react-native';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-
-import About from '../pages/about';
-import Notification from '../pages/notification';
-import User from '../pages/user';
+import User from '../components/User/user';
+import About from '../components/About/about';
+import Notification from '../components/Notification/notification';
 import AppsContainer from './appContainer';
 import TabIcon from '../components/tabicon';
+
 const RouterWithRedux = connect()(Router);
 
 const getSceneStyle = (props, computedProps) => {
@@ -54,49 +53,49 @@ const getSceneStyle = (props, computedProps) => {
   return style;
 };
 
-class MobileCenter extends React.Component{
-	render(){
-		return (
-			<RouterWithRedux
-        		titleStyle={styles.navBarTitle}
-        		getSceneStyle={getSceneStyle}
-				navigationBarStyle={styles.navBar}
-			>
-				<Scene key='root'>
-				 <Scene key='tabbar' tabs pressOpacity={0.8} type={ActionConst.REPLACE}>
-		            <Scene
-				 	 key="apps"
-				 	 component={AppsContainer}
-				 	 title="Apps"				 	 
-				 	 icon={TabIcon}
-				 	 iconName="md-apps"
-				 	/>				 
-		            <Scene
-				 	 key="notification"
-				 	 component={Notification}
-				 	 title="Notification"				 	 
-				 	 icon={TabIcon}
-				 	 iconName="md-notifications"
-				 	/>
-					<Scene
-				 	 key="user"
-				 	 component={User}
-				 	 title="My Info"				 	 
-				 	 icon={TabIcon}
-				 	 iconName="md-person"
-				 	/>
-					<Scene
-		              key="about"
-		              component={About}
-		              title="About"
-		              icon={TabIcon}
-		              iconName="md-information-circle"
-		            />
-		          </Scene>
-				</Scene>													
-			</RouterWithRedux>
-		)
-	}
+class MobileCenter extends React.Component {
+  render() {
+    return (
+      <RouterWithRedux
+        titleStyle={styles.navBarTitle}
+        getSceneStyle={getSceneStyle}
+        navigationBarStyle={styles.navBar}
+      >
+        <Scene key="root">
+          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE}>
+            <Scene
+              key="apps"
+              component={AppsContainer}
+              title="Apps"
+              icon={TabIcon}
+              iconName="md-apps"
+            />
+            <Scene
+              key="notification"
+              component={Notification}
+              title="Notification"
+              icon={TabIcon}
+              iconName="md-notifications"
+            />
+            <Scene
+              key="user"
+              component={User}
+              title="My Info"
+              icon={TabIcon}
+              iconName="md-person"
+            />
+            <Scene
+              key="about"
+              component={About}
+              title="About"
+              icon={TabIcon}
+              iconName="md-information-circle"
+            />
+          </Scene>
+        </Scene>
+      </RouterWithRedux>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
