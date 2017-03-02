@@ -24,20 +24,16 @@
  *
  */
 
-import { REQUEST_APPS, RECEIVE_APPS } from './types';
+import React from 'react';
+import { connect } from 'react-redux';
+import Apps from '../pages/Apps';
 
-export function requestAppList(tokenId) {
-  return {
-    type: REQUEST_APPS,
-    tokenId,
-  };
+class AppsContainer extends React.Component {
+  render() {
+    return (
+      <Apps />
+    );
+  }
 }
 
-export function receiveAppList(tokenId, json) {
-  return {
-    type: RECEIVE_APPS,
-    tokenId,
-    apps: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  };
-}
+export default connect()(AppsContainer);

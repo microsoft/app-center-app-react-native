@@ -25,70 +25,14 @@
  */
 
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-class About extends React.Component {
+export default class Build extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <View style={styles.center}>
-            <Text style={styles.title}>
-              React Native Mobile Center
-            </Text>
-          </View>
-        </View>
+      <View>
+        <Text> Build </Text>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingBottom: 10
-  },
-  center: {
-    flex: 1,
-    alignItems: 'center'
-  },
-  logo: {
-    width: 110,
-    height: 110,
-    marginTop: 50
-  },
-  version: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#aaaaaa',
-    marginTop: 5
-  },
-  title: {
-    fontSize: 28,
-    textAlign: 'center',
-    color: '#313131',
-    marginTop: 10
-  },
-  subtitle: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#4e4e4e'
-  },
-  disclaimerContent: {
-    flexDirection: 'column'
-  },
-  disclaimer: {
-    fontSize: 14,
-    textAlign: 'center'
-  },
-  bottomContainer: {
-    alignItems: 'center'
-  }
-});
-
-export default About;

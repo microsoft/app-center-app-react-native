@@ -24,20 +24,15 @@
  *
  */
 
-import { REQUEST_APPS, RECEIVE_APPS } from './types';
+import React from 'react';
+import { Text, View } from 'react-native';
 
-export function requestAppList(tokenId) {
-  return {
-    type: REQUEST_APPS,
-    tokenId,
-  };
-}
-
-export function receiveAppList(tokenId, json) {
-  return {
-    type: RECEIVE_APPS,
-    tokenId,
-    apps: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  };
+export default class Test extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text> Test </Text>
+      </View>
+    );
+  }
 }

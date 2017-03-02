@@ -26,46 +26,76 @@
 
 import React, { propTypes } from 'react';
 import { StyleSheet,
-		 ListView,
-		 RefreshControl,
-		 ScrollView,
-		 Text,
-		 TouchableOpacity,
-		 InteractionManager,
-		 ActivityIndicator,
-		 RecyclerViewBackedScrollView,
-		 Image,
-		 View,
-		 DeviceEventEmitter,
-		 Platform,
-		 AlertIOS } from 'react-native';
+  ListView,
+  View,
+  Platform,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Image,
+  Button
+} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
-import LoadingView from '../Loading/loading';
-import { toastShort } from '../../utils/ToastUtil';
-import Storage from '../../utils/StorageUtil';
-import SearchBar from 'react-native-searchbar';
+const mockData = [
+  {
+    appName: 'Calculator-Test',
+    abbrName: 'C',
+    userName: 'buptkang'
+  },
+  {
+    appName: 'Moody',
+    abbrName: 'Moody',
+    userName: 'buptkang'
+  }
+];
 
 export default class Apps extends React.Component {
 
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
     this.state = {
-      dataSource: ds.cloneWithRows(data),
-      tokenId: TOKENID
+      dataSource: ds.cloneWithRows(mockData),
     };
-    this.renderItem = this.renderItem.bind(this);
+    this.onPressApp = this.onPressApp.bind(this);
+  }
+
+  onPressApp(app) {
+    Actions.tabbar2();
+  }
+
+  renderApp(app) {
+    return (
+      <TouchableOpacity onPress={() => this.onPressApp(app)}>
+        <View style={styles.containerItem}>
+          <Image style={styles.itemImg}>
+            <Text>
+              {app.abbrName}
+            </Text>
+          </Image>
+          <View style={styles.itemRightContent}>
+            <Text style={styles.title}>
+              {app.appName}
+            </Text>
+            <View style={styles.itemRightBottom}>
+              <Text style={styles.userName}>
+                {app.userName}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
   }
 
   render() {
-    const { app } = this.props;
     return (
-      <View>
+      <View style={styles.container}>
         <ListView
+          initialListSize={1}
           dataSource={this.state.dataSource}
-          renderRow={this.renderItem}
-          style={styles.listView}
+          renderRow={row => this.renderApp(row)}
         />
       </View>
     );

@@ -27,11 +27,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default class Notification extends React.Component {
+export default class Distribute extends React.Component {
   render() {
     return (
       <View>
-        <Text> TODO: Push Notification </Text>
+        <Text> Distribute </Text>
       </View>
     );
   }

@@ -23,39 +23,39 @@
  * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import { loginRequest } from '../../actions/login';
+import React, { PropTypes } from 'react';
+import { StyleSheet, Text,
+         View, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class Login extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = { username: 'username', password: 'password' };    
+    this.state = { username: 'default', password: 'default' };
   }
 
   onPress() {
-      const sendLoginRequest = ({username, password}) => dispatch(loginRequest({username, password}))
+    Actions.tabbar();
   }
 
   render() {
-    const {login, dispatch} = this.props;
+    // const {login, dispatch} = this.props;
     return (
       <View style={styles.container} >
-
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
           onChangeText={username => this.setState({ username })}
           value={this.state.username}
         />
-
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor="#99d9f4">
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onPress} underlayColor="#99d9f4"
+        >
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableHighlight>
       </View>

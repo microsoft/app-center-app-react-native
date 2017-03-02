@@ -25,33 +25,30 @@
  */
 
 import React from 'react';
-import { StyleSheet, Navigator } from 'react-native';
+import { StyleSheet, Navigator, Image } from 'react-native';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import User from '../components/User/user';
-import About from '../components/About/about';
-import Notification from '../components/Notification/notification';
-import AppsContainer from './appContainer';
+import User from '../pages/User';
+import Notification from '../pages/Notification';
+import AppsContainer from './appsContainer';
+import AppContainer from './appContainer';
+import BuildContainer from './app/BuildContainer';
+import TestContainer from './app/TestContainer';
+import DistributeContainer from './app/DistributeContainer';
+import CrashContainer from './app/CrashContainer';
+import AnalyticsContainer from './app/AnalyticsContainer';
+
+import Login from './loginContainer';
 import TabIcon from '../components/tabicon';
+import Splash from '../pages/Splash';
 
 const RouterWithRedux = connect()(Router);
 
-const getSceneStyle = (props, computedProps) => {
-  const style = {
-    flex: 1,
-    backgroundColor: '#fff',
-    shadowColor: null,
-    shadowOffset: null,
-    shadowOpacity: null,
-    shadowRadius: null,
-  };
-  if (computedProps.isActive) {
-    style.marginTop = computedProps.hideNavBar ?
-      0 : Navigator.NavigationBar.Styles.General.TotalNavHeight;
-    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
-  }
-  return style;
-};
+const appBuildImg = require('../img/app-build.png');
+const appTestImg  = require('../img/app-test.png');
+const appDistributeImg = require('../img/app-distribute.png');
+const appCrashImg = require('../img/app-crashes.png');
+const appAnalyticsImg = require('../img/app-analytics.png');
 
 class MobileCenter extends React.Component {
   render() {
@@ -62,7 +59,9 @@ class MobileCenter extends React.Component {
         navigationBarStyle={styles.navBar}
       >
         <Scene key="root">
-          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE}>
+          <Scene key="splash" component={Splash} hideNavBar hideTabBar initial />
+          <Scene key="login" component={Login} hideNavBar hideTabBar />
+          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} >
             <Scene
               key="apps"
               component={AppsContainer}
@@ -84,12 +83,42 @@ class MobileCenter extends React.Component {
               icon={TabIcon}
               iconName="md-person"
             />
+          </Scene>
+          <Scene key="tabbar2" tabs type={ActionConst.REPLACE}>
             <Scene
-              key="about"
-              component={About}
-              title="About"
+              key="build"
+              component={BuildContainer}
+              title="Build"
               icon={TabIcon}
-              iconName="md-information-circle"
+              iconName="md-play"
+            />
+            <Scene
+              key="test"
+              component={TestContainer}
+              title="Test"
+              icon={TabIcon}
+              iconName="ios-checkmark-circle-outline"
+            />
+            <Scene
+              key="distribute"
+              component={DistributeContainer}
+              title="Distribute"
+              icon={TabIcon}
+              iconName="ios-git-branch"
+            />
+            <Scene
+              key="crash"
+              component={CrashContainer}
+              title="Crash"
+              icon={TabIcon}
+              iconName="ios-warning-outline"
+            />
+            <Scene
+              key="analytics"
+              component={AnalyticsContainer}
+              title="Analytics"
+              icon={TabIcon}
+              iconName="ios-stats-outline"
             />
           </Scene>
         </Scene>
@@ -97,6 +126,23 @@ class MobileCenter extends React.Component {
     );
   }
 }
+
+const getSceneStyle = (props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#fff',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ?
+      0 : Navigator.NavigationBar.Styles.General.TotalNavHeight;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
 
 const styles = StyleSheet.create({
   navBar: {

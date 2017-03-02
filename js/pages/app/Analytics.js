@@ -27,11 +27,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default class User extends React.Component {
+export default class Analytics extends React.Component {
   render() {
     return (
       <View>
-        <Text> TODO: Render User Information.</Text>
+        <Text> Analytics </Text>
       </View>
     );
   }

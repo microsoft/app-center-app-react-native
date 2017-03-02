@@ -24,20 +24,17 @@
  *
  */
 
-import { REQUEST_APPS, RECEIVE_APPS } from './types';
+import React from 'react';
+import { Text, View } from 'react-native';
 
-export function requestAppList(tokenId) {
-  return {
-    type: REQUEST_APPS,
-    tokenId,
-  };
-}
+// TODO: Add Notification functions
 
-export function receiveAppList(tokenId, json) {
-  return {
-    type: RECEIVE_APPS,
-    tokenId,
-    apps: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  };
+export default class Notification extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text> Push Notification </Text>
+      </View>
+    );
+  }
 }
