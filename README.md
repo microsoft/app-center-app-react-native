@@ -6,7 +6,7 @@
 
 Microsoft Mobile Center Mobile App complements Microsoft Mobile Center portal to let mobile developers track developed apps' usage from customers in a light and mobile manner. The source code is 100% based on **React/React Native/Redux**. 
 
-**Notes** Mobile Center Mobile App will support all features that you (avid mobile developer) want. It is not a duplicate of mobile center portal. Thus, open issues to decide what we should go next. 
+**Notes** Mobile Center Mobile App will support all features that you (avid mobile developer) want. It is not a duplicate of mobile center portal. Thus, we care your ideas. Open issues now to let us know what we should go next. 
 
 ## Code Structure
 
