@@ -24,35 +24,34 @@
  *
  */
 
-import {put, take, call, fork} from 'redux-saga/effects';
+import { takeEvery, put, call, fork } from 'redux-saga/effects';
+import { REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR } from '../actions/types';
+import { toastShort } from '../utils/ToastUtil';
+import { appsAPI } from '../utils/RequestUtil';
 
-import * as types from '../actions/types';
-import {fetchAppList, receiveAppList} from '../actions/apps';
-import {toastShort} from '../utils/ToastUtil';
-import {request} from '../utils/RequestUtil';
-
-const get_apps   = "/v0.1/apps";
-
-export function* requestAppList(isRefreshing, loading, tokenId, isLoadMore, page){
-	try{
-		yield put(fetchAppList(isRefreshing, loading, isLoadMore));
-		const appList = yield call(request, get_apps, 'get');
-		yield put(receiveAppList(appList,tokenId));
-	}catch(error){
-		yield put(receiveAppList([], tokenId));
-		toastShort('Network Error, Please Retry!!!');
-	}
+export function* watchFetchAppList() {
+  yield takeEvery(REQUEST_APPS, fetchAppsFlow);
 }
 
-export function* watchRequestAppList(){
-	while(true){
-		const {
-	      isRefreshing,
-	      loading,
-	      tokenId,
-	      isLoadMore,
-	      page
-    	} = yield take(types.REQUEST_APP_LIST);
-    	yield fork(requestAppList, isRefreshing, loading, tokenId, isLoadMore, page);
-	}
+export function* fetchAppsFlow(action) {
+  yield fork(fetchApps,
+        { tokenId: action.tokenId });
+}
+
+export function* fetchApps({ tokenId }) {
+  try {
+    const response = yield call(appsAPI, {
+      tokenId
+    });
+    yield put({
+      type: RECEIVE_APPS,
+      response
+    });
+  } catch (error) {
+    yield put({
+      type: RECEIVE_APPS_ERROR,
+      error
+    });
+    toastShort('Network Error, Please Retry!!!');
+  }
 }

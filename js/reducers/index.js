@@ -24,13 +24,15 @@
  *
  */
 
-import {combineReducers} from 'redux';
-import app from './apps'
-import routes from './routes'
+import { combineReducers } from 'redux';
+import app from './apps';
+import routes from './routes';
+import login from './login';
 
 const rootReducer = combineReducers({
-	app,
-	routes
+  app,
+  routes,
+  login
 });
 
 export default rootReducer;

@@ -24,38 +24,41 @@
  *
  */
 
-const HOST = "https://api.mobile.azure.com";
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const error = new Error(response.statusText);
+  error.response = response;
+  throw error;
+}
 
-export const TOKENID = "2eb6d0e2250779ad71acde8f383158b48aa0b4b6";
+function parseJSON(response) {
+  return response.json();
+}
 
-export const request = (url, method, body) => {
-	let isOk;
-	return new Promise((resolve, reject) => {
-		fetch(HOST + url, {
-			method,
-			headers:{
-				'Accept': 'application/json',
-				'X-API-Token': TOKENID
-			},
-			body
-		})
-		.then((response) => {
-			if(response.ok){
-				isOk = true;
-			}else{
-				isOk = false;
-			}
-			return response.json();
-		})
-		.then((responseData) => {
-			if(isOk){
-				resolve(responseData);
-			} else {
-				reject(responseData);
-			}
-		})
-		.catch((error) => {
-			reject(error);
-		});
-	}); 
-};
+function fetchAPI(url, options) {
+  return fetch(url, options)
+        .then(checkStatus)
+        .then(parseJSON);
+}
+
+export function loginAPI({ username, password }) {
+  return fetchAPI('https://api.mobile.azure.com/v0.1/api_tokens', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ username, password })
+  });
+}
+
+export function appsAPI({ tokenID }) {
+  return fetchAPI('https://api.mobile.azure.com/v0.1/apps', {
+    headers: {
+      'Content-Type': 'applicatin/json',
+      'X-API-Token': tokenID
+    },
+    method: 'GET'
+  });
+}

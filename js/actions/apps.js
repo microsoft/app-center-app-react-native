@@ -24,32 +24,20 @@
  *
  */
 
-import * as types from './types';
+import { REQUEST_APPS, RECEIVE_APPS } from './types';
 
-export function requestAppList(isRefreshing, loading, tokenId, isLoadMore, page = 1) {
+export function requestAppList(tokenId) {
   return {
-    type: types.REQUEST_APP_LIST,
-    isRefreshing,
-    loading,
-    isLoadMore,
+    type: REQUEST_APPS,
     tokenId,
-    page,
   };
 }
 
-export function fetchAppList(isRefreshing, loading, isLoadMore = false) {
+export function receiveAppList(tokenId, json) {
   return {
-    type: types.FETCH_APP_LIST,
-    isRefreshing,
-    loading,
-    isLoadMore
-  };
-}
-
-export function receiveAppList(appList, tokenId) {
-  return {
-    type: types.RECEIVE_APP_LIST,
-    appList,
-    tokenId
+    type: RECEIVE_APPS,
+    tokenId,
+    apps: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
   };
 }

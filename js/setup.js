@@ -31,14 +31,12 @@ import rootSaga from './sagas/index';
 import MobileCenter from './containers/mobilecenter';
 
 const store = configureStore();
-
-//run root saga
 store.runSaga(rootSaga);
 
 const setup = () => (
-	<Provider store={store}>
-		<MobileCenter/>
-	</Provider>
+  <Provider store={store}>
+    <MobileCenter />
+  </Provider>
 );
 
 export default setup;

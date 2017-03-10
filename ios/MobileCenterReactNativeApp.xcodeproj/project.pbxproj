@@ -38,6 +38,7 @@
 		967445A6F99543C49C47BCF0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D843D873E1AF4A358AD2EB31 /* SimpleLineIcons.ttf */; };
 		AB7289AC917B4E5DABB33A85 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37C6442EE45D4A4D9F95DBD1 /* FontAwesome.ttf */; };
 		ACD7101537094C4CAC2422F4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D32F9E9A5504A528C2EDC7D /* Entypo.ttf */; };
+		C6F43F438CF14063A6B455E8 /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AD9C2359D24DDF9717B8D9 /* libRNSearchBar.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +287,8 @@
 		D843D873E1AF4A358AD2EB31 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		DCB78B73B64B4F47AEF36680 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		E8AACDB6442A404B970AC4B4 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		9D305C7C431D4644A9582519 /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; name = "RNSearchBar.xcodeproj"; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		08AD9C2359D24DDF9717B8D9 /* libRNSearchBar.a */ = {isa = PBXFileReference; name = "libRNSearchBar.a"; path = "libRNSearchBar.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +319,7 @@
 				3F1096DC29134987B0963FA1 /* libCodePush.a in Frameworks */,
 				406741C90D344A5C98BA37B3 /* libz.tbd in Frameworks */,
 				6D9F611F827747FBAD25C03F /* libRNVectorIcons.a in Frameworks */,
+				C6F43F438CF14063A6B455E8 /* libRNSearchBar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +516,7 @@
 				D10B24DEAE6D4CAB87D7A4E8 /* RNDeviceInfo.xcodeproj */,
 				7B89936946D847F68C345331 /* RNVectorIcons.xcodeproj */,
 				623CB73D55124A85B3F6C94B /* CodePush.xcodeproj */,
+				9D305C7C431D4644A9582519 /* RNSearchBar.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -985,6 +990,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileCenterReactNativeApp.app/MobileCenterReactNativeApp";
@@ -1001,6 +1007,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

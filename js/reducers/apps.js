@@ -24,32 +24,28 @@
  *
  */
 
-import * as types from '../actions/types';
+import { REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR } from '../actions/types';
 
-const initialState = {
-	isRefreshing: false,
-	loading: false,
-	isLoadMore: false,
-	noMore: false,
-	appList: []
-};
-
-export default function app(state = initialState, action){
-	switch(action.type){
-		case types.FETCH_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: action.isRefreshing,
-				loading: action.loading,
-				isLoadMore: action.isLoadMore
-			});
-		case types.RECEIVE_APP_LIST:
-			return Object.assign({}, state, {
-				isRefreshing: false,
-				isLoadMore: false,
-				noMore: action.appList.length == 0,
-				appList: action.appList
-			});
-		default:
-			return state;
-	}	
+export default function apps(state = {
+  status: 'init',
+}, action) {
+  switch (action.type) {
+    case REQUEST_APPS:
+      return Object.assign({}, state, {
+        status: 'isFetching',
+      });
+    case RECEIVE_APPS:
+      return Object.assign({}, state, {
+        status: 'receiveapps',
+        apps: action.response.apps,
+        lastUpdated: action.response.receivedAt
+      });
+    case RECEIVE_APPS_ERROR:
+      return {
+        status: 'error',
+        error: action.error
+      };
+    default:
+      return state;
+  }
 }

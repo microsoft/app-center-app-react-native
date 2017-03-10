@@ -23,12 +23,14 @@
  * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-
 import { fork } from 'redux-saga/effects';
-import { watchRequestAppList } from './apps';
+
+import { watchFetchAppList } from './apps';
+import { watchRequestLogin } from './login';
 
 export default function* rootSaga(){
-	yield [
- 		fork(watchRequestAppList)
- 	];
+  yield [
+    fork(watchRequestLogin),
+    fork(watchFetchAppList)
+  ];
 }
