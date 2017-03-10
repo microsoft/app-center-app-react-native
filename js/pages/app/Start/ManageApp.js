@@ -25,13 +25,24 @@
  */
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default class Test extends React.Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    borderWidth: 2,
+    borderColor: 'red',
+  },
+});
+
+export default class ManageApp extends React.Component {
   render() {
     return (
-      <View>
-        <Text> Mobile Center Test includes a free trial for UI testing. </Text>
+      <View style={styles.container}>
+        <Text> Wow, managemy app </Text>
       </View>
     );
   }

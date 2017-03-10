@@ -25,14 +25,128 @@
  */
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ListView, StyleSheet, Platform, TextInput } from 'react-native';
+import SearchBar from 'react-native-search-bar';
+import Button from 'react-native-button';
+
+import Drawer from 'react-native-drawer';
+
+import ManageApp from '../../containers/app/Start/ManageAppContainer';
 
 export default class Build extends React.Component {
-  render() {
+
+  constructor() {
+    super();
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+    });
+
+    this.state = {
+      dataSource: ds.cloneWithRows(['Branches ', ' Status', ' Last Commit', ' Last build']),
+    };
+  }
+
+  renderRow(rowData) {
+    return <Text>{rowData}</Text>;
+  }
+
+  renderHeader(rowHeader) {
+    return <Text> { rowHeader } </Text>;
+  }
+
+  renderSectionHeader(sectionData, sectionID) {
     return (
-      <View>
-        <Text> Build </Text>
+      <View style={styles.section}>
+        <Text style={styles.text}>
+          {sectionData}
+        </Text>
       </View>
     );
   }
+
+  render() {
+    return (
+      <Drawer
+        ref={c => this.drawer = c}
+        type="overlay"
+        openDrawerOffset={0.2}
+        panCloseMask={0.2}
+        content={<ManageApp />}
+        side="right"
+        tapToClose
+        negotiatePan
+      >
+        <View style={styles.container}>
+          <SearchBar
+            ref="searchBar"
+            placeholder="Search"
+          />
+          <ListView
+            style={styles.listview}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
+          />
+
+          <Button
+            style={{ fontSize: 20, color: 'green' }}
+            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, backgroundColor: 'orange' }}
+            styleDisabled={{ color: 'red' }}
+            onPress={() => alert('TODO: link to webview')}
+          >
+            Open on GitHub
+            </Button>
+        </View>
+      </Drawer>
+    );
+  }
 }
+
+var styles = StyleSheet.create({
+  listview: {
+    backgroundColor: '#B0C4DE',
+  },
+  header: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3B5998',
+    flexDirection: 'row',
+  },
+  text: {
+    color: 'white',
+    paddingHorizontal: 8,
+  },
+  rowText: {
+    color: '#888888',
+  },
+  thumbText: {
+    fontSize: 20,
+    color: '#888888',
+  },
+  buttonContents: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    marginVertical: 3,
+    padding: 5,
+    backgroundColor: '#EAEAEA',
+    borderRadius: 3,
+    paddingVertical: 10,
+  },
+  img: {
+    width: 64,
+    height: 64,
+    marginHorizontal: 10,
+    backgroundColor: 'transparent',
+  },
+  section: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    padding: 6,
+    backgroundColor: '#5890ff',
+  },
+});

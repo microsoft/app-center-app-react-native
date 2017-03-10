@@ -26,13 +26,41 @@
 
 import React from 'react';
 import { Text, View } from 'react-native';
+import Button from 'react-native-button';
+import Drawer from 'react-native-drawer';
 
-export default class Test extends React.Component {
+import ManageApp from '../../containers/app/Start/ManageAppContainer';
+
+export default class Start extends React.Component {
+
   render() {
     return (
-      <View>
-        <Text> Mobile Center Test includes a free trial for UI testing. </Text>
-      </View>
+      <Drawer
+        ref={c => this.drawer = c}
+        type="overlay"
+        openDrawerOffset={0.2}
+        panCloseMask={0.2}
+        content={<ManageApp />}
+        side="right"
+        tapToClose
+        negotiatePan
+      >
+        <View>
+          <Button
+            style={{ fontSize: 20, color: 'green'}}
+            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, backgroundColor: 'orange'}}
+            styleDisabled={{ color: 'red' }}
+            onPress={() => this.drawer.open()}
+          >
+            Manage App
+          </Button>
+          <Text> Add Mobile Center’s SDK to your app. </Text>
+
+          <Text> 1. Integrate using CocoaPods </Text>
+          <Text> 2. Start the SDK </Text>
+          <Text> 3. Explore Data </Text>
+        </View>
+      </Drawer>
     );
   }
 }

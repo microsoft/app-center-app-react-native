@@ -25,14 +25,68 @@
  */
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
+
+import Button from 'react-native-button';
+
+import {
+  Card,
+  CardImage,
+  CardTitle,
+  CardContent,
+  CardAction
+} from 'react-native-card-view';
 
 export default class Distribute extends React.Component {
+
+  _renderTitle (title) {
+    return (
+      <View style={{flex: 1, alignItems: 'center', marginTop: 20}}>
+        <Text style={{fontSize: 10}}>{title}</Text>
+      </View>
+    )
+  }
+
   render() {
     return (
-      <View>
-        <Text> Distribute </Text>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Card styles={{card: {width: 300, height: 100 }}}>
+            <CardTitle>
+              <Text style={styles.title}>Collaborators</Text>
+            </CardTitle>
+            <CardContent>
+              <Text>Who do you collaborate with?</Text>
+            </CardContent>
+          </Card>
+          <Card styles={{card: {width: 300, height: 100 }}}>
+            <CardTitle>
+              <Text style={styles.title}>Alpha Testers</Text>
+            </CardTitle>
+            <CardContent>
+              <Text>With whom?</Text>
+            </CardContent>
+          </Card>
+        </View>
+      </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 60,
+    marginBottom: 60
+  },
+  title: {
+    fontSize: 16,
+    backgroundColor: 'transparent'
+  },
+  button: {
+    marginRight: 10
+  },
+  card: {
+    width: 300
+  }
+});
