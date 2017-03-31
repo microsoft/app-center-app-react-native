@@ -25,8 +25,9 @@
  */
 import React, { PropTypes } from 'react';
 import { StyleSheet, Text,
-         View, TextInput, TouchableHighlight, Alert } from 'react-native';
+         View, TextInput, TouchableHighlight, Alert, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Form from '../components/Form';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -42,22 +43,12 @@ export default class Login extends React.Component {
     // const {login, dispatch} = this.props;
     return (
       <View style={styles.container} >
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={username => this.setState({ username })}
-          value={this.state.username}
-        />
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.onPress} underlayColor="#99d9f4"
-        >
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableHighlight>
+        <Image style={styles.backgroundImg}
+        source={require('../img/splash.png')} />
+        <Text style={styles.title}>
+          Login
+        </Text>
+        <Form />
       </View>
     );
   }
@@ -70,9 +61,15 @@ let styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#ffffff',
   },
+  backgroundImg: {
+    width: 150,
+    height: 140,
+    alignSelf: 'center',
+  },
   title: {
     fontSize: 30,
     alignSelf: 'center',
+    marginTop: 20,
     marginBottom: 30
   },
   buttonText: {

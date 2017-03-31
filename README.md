@@ -68,6 +68,9 @@ npm install -g react-native-cli
 npm install
 react-native link react-native-device-info
 react-native link react-native-vector-icons
+
+react-native link react-native-svg
+
 ```-->
 
 <!--### Step-->

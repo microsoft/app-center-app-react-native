@@ -40,7 +40,7 @@ import CrashContainer from './app/CrashContainer';
 import AnalyticsContainer from './app/AnalyticsContainer';
 
 import Drawer from 'react-native-drawer';
-import Login from './loginContainer';
+import LoginContainer from './loginContainer';
 import TabIcon from '../components/tabicon';
 import Splash from '../pages/Splash';
 import NavigationDrawer from '../components/navigationDrawer';
@@ -64,8 +64,8 @@ class MobileCenter extends React.Component {
       >
         <Scene key="root">
           <Scene key="splash" component={Splash} hideNavBar hideTabBar />
-          <Scene key="login" component={Login} hideNavBar hideTabBar  />
-          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} initial>
+          <Scene key="login" component={LoginContainer} hideNavBar hideTabBar initial />
+          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} >
             <Scene
               key="apps"
               component={AppsContainer}
@@ -83,7 +83,7 @@ class MobileCenter extends React.Component {
             <Scene
               key="user"
               component={User}
-              title="My Info"
+              title="You"
               icon={TabIcon}
               iconName="md-person"
             />
@@ -191,8 +191,8 @@ const drawerStyles = {
 
 const tabstyles = StyleSheet.create({
   container: { flex: 1,
-backgroundColor: 'transparent',
-justifyContent: 'center',
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   tabBarStyle: {
