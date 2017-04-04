@@ -1,7 +1,12 @@
+'use strict';
+
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import t from 'tcomb-form-native';
 import ErrorMessage from './ErrorMessage';
+
+import { loginRequest } from '../actions/login';
+
 
 var RNForm = t.form.Form;
 
@@ -17,14 +22,23 @@ var options = {}; // optional rendering options (see documentation)
 class Form extends React.Component {
 
     onPress () {
-      console.log(this.refs.form.name.getValue());
+
+      let { dispatch } = this.props;
+
+      var value = this.refs.form.getValue();
+      if (value) { // if validation fails, value will be null
+        // console.log(value.name); // value here is an instance of Person
+        dispatch(loginRequest({ username: value.name, password: value.password }));
+      }else{
+        //TODO
+      }
     }
 
     render () {
         return (
            <View style={styles.container}>
                 <RNForm ref="form" type={User} options={options} />
-                <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+                <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
                     <Text style={styles.buttonText}>Click</Text>
                 </TouchableHighlight>
             </View>

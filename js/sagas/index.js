@@ -24,13 +24,13 @@
  *
  */
 import { fork } from 'redux-saga/effects';
-
 import { watchFetchAppList } from './apps';
-import { watchRequestLogin } from './login';
+import { loginFlow, logoutFlow } from './login';
 
-export default function* rootSaga(){
+export default function* rootSaga() {
   yield [
-    fork(watchRequestLogin),
+    fork(loginFlow),
+    fork(logoutFlow),
     fork(watchFetchAppList)
   ];
 }

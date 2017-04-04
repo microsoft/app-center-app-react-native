@@ -9,7 +9,10 @@
     "storybook": "storybook start -p 7007"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "btoa": "^1.1.2",
     "buffer": "^5.0.2",
+    "jsdoc": "^3.4.3",
     "moment": "^2.17.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.40.0",

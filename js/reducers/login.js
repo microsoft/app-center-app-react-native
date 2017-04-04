@@ -1,22 +1,46 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS , LOGIN_ERROR } from '../actions/types';
+import { 
+  CHANGE_FORM,
+  SET_AUTH,
+  SENDING_REQUEST,
+  REQUEST_ERROR,
+  CLEAR_ERROR,
+  LOGIN_REQUEST, 
+  LOGIN_SUCCESS , 
+  LOGIN_ERROR } from '../actions/types';
 
-export default function login(state = {
-  status: 'init'
-}, action) {
+import auth from '../auth';
+
+// The initial application state
+let initState = {
+  formState: {
+    username: '',
+    password: ''
+  }, 
+  error: '',
+  currentlySending: false,
+  loggedIn: auth.loggedIn()
+};
+
+export default function login(state=initState, action) {
   switch (action.type) {
-    case LOGIN_REQUEST:
+    case CHANGE_FORM:
       return {
-        status: 'loading'
+        ...state,
+        formState: action.newFormState
       };
-    case LOGIN_SUCCESS:
+    case SET_AUTH:
       return {
-        status: 'logined',
-        username: action.response.username,
-        token: action.response.token
+        ...state,
+        loggedIn: action.newAuthState
       };
-    case LOGIN_ERROR:
+    case SENDING_REQUEST:
       return {
-        status: 'error',
+        ...state,
+        currentlySending: action.sending
+      };
+    case REQUEST_ERROR:
+      return {
+        ...state,
         error: action.error
       };
     default:
