@@ -24,8 +24,8 @@
  *
  */
 
-import apps from '../apps';
-import {REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR} from '../../actions/types';
+import apps from '../../js/reducers/apps';
+import {REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR} from '../../js/actions/types';
 
 describe('Reducers/ apps', () => {
   function getInitState() {

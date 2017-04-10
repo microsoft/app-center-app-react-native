@@ -34,10 +34,12 @@ Under **js** folder:
 
 Search for the **TODO** tag in the code base to check for incomplete tasks.
 
+- [Redux-offline](https://github.com/jevakallio/redux-offline)
 - Code-Push
 - Continuous Integration with Fastlane and Bitrise, [Article](http://blog.thebakery.io/continuous-integration-for-react-native-applications-with-fastlane-and-bitrise-ios-version/)
 - Mobile Center React Native SDK to track app usage by developers, [mobile-center-sdk-react-native](https://github.com/Microsoft/mobile-center-sdk-react-native)
 - Push Notification (per app configuration),[react-native-push-notification](https://github.com/zo0r/react-native-push-notification)
+- [Redux-optimist](https://github.com/ForbesLindesay/redux-optimist)
 - Redux Immutable State, [redux-immutable](https://github.com/gajus/redux-immutable)
 - Reselect : efficient rendering computation.
 

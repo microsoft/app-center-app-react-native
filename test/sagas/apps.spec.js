@@ -25,9 +25,9 @@
  */
 
 import { takeEvery, call, put, fork } from 'redux-saga/effects';
-import { REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR } from '../../actions/types';
-import { fetchApps, fetchAppsFlow, watchFetchAppList } from '../apps';
-import { appsAPI } from '../../utils/RequestUtil';
+import { REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR } from '../../js/actions/types';
+import { fetchApps, fetchAppsFlow, watchFetchAppList } from '../../js/sagas/apps';
+import { appsAPI } from '../../js/utils/RequestUtil';
 
 describe('Sagas/ apps', () => {
 

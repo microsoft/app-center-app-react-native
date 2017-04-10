@@ -88,7 +88,6 @@ class MobileCenter extends React.Component {
               iconName="md-person"
             />
           </Scene>
-
           <Scene key="tabbar2">
             <Scene
               key="main" tabs

@@ -25,10 +25,10 @@
  */
 
 import { takeEvery, call, put, fork } from 'redux-saga/effects';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../../actions/types';
-import { watchRequestLogin, loginFlow, authorize } from '../login';
-import { loginAPI } from '../../utils/RequestUtil';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../../js/actions/types';
+import { watchRequestLogin, loginFlow, authorize } from '../../js/sagas/login';
+import { loginAPI } from '../../js/utils/RequestUtil';
 
-// describe('Sagas/ login', () => {
+describe('Sagas/ login', () => {
 
-// });
+});

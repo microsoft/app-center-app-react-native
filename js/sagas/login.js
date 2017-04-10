@@ -24,7 +24,6 @@
  *
  */
 
-import { hashSync } from 'bcryptjs';
 import genSalt from '../auth/salt';
 import auth from '../auth';
 import { take, takeEvery, call, put, fork } from 'redux-saga/effects';

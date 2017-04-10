@@ -3,7 +3,7 @@ import btoa from 'btoa';
 export default function (seed) {
     let bytes = [];
 
-    for (let i = 0, l = seed.length; i < l; i++){
+    for (let i = 0, l = seed.length; i < l; i++) {
         bytes.push(seed.charCodeAt(i));
     }
 

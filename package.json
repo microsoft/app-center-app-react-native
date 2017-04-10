@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint .",
-    "storybook": "storybook start -p 7007"
+    "storybook": "storybook start -p 7007",
+    "cleanlog": "rm npm-debug.log*"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
