@@ -12,7 +12,7 @@ let fakeRequest = {
             case '/logout':
                 return server.logout();
             default:
-                break;
+                throw `Unknown POST command: ${endpoint}`;
         }
     }
 };
