@@ -5,9 +5,9 @@ import store from 'react-native-simple-store';
 let auth = {
 
     login(username, password) {
-        if (auth.loggedIn()) return Promise.resolve(true);
+        //if (auth.loggedIn()) return Promise.resolve(true);
         // Post a fake request
-        return request.post('login', {username, password})
+        return request.post('/login', {username, password})
          .then(reponse => {
              store.save('token', response.token);
              return Promise.resolve(true);
