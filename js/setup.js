@@ -41,6 +41,4 @@ const setup = () => (
   </Provider>
 );
 
-global.storage = storage;
-
 export default setup;

@@ -1,5 +1,4 @@
 import login from '../../js/reducers/login';
-import auth from '../../js/auth';
 import {SENDING_REQUEST} from '../../js/actions/types';
 
 describe('reducer login state machine', () => {

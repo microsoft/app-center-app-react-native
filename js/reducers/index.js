@@ -27,12 +27,12 @@
 import { combineReducers } from 'redux';
 import app from './apps';
 import routes from './routes';
-import login from './login';
+//import login from './login';
 
 const rootReducer = combineReducers({
   app,
   routes,
-  login
+//  login
 });
 
 export default rootReducer;

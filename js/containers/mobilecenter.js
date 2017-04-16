@@ -64,8 +64,8 @@ class MobileCenter extends React.Component {
       >
         <Scene key="root">
           <Scene key="splash" component={Splash} hideNavBar hideTabBar />
-          <Scene key="login" component={LoginContainer} hideNavBar hideTabBar initial />
-          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} >
+          <Scene key="login" component={LoginContainer} hideNavBar hideTabBar  />
+          <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} initial>
             <Scene
               key="apps"
               component={AppsContainer}
