@@ -10,7 +10,7 @@
     "cleanlog": "rm npm-debug.log*"
   },
   "dependencies": {
-    "btoa": "^1.1.2",
+    "base-64": "^0.1.0",
     "buffer": "^5.0.2",
     "jsdoc": "^3.4.3",
     "moment": "^2.17.1",
@@ -18,6 +18,7 @@
     "react-native": "0.40.0",
     "react-native-button": "^1.8.2",
     "react-native-card-view": "0.0.3",
+    "react-native-clean-form": "^0.4.1",
     "react-native-code-push": "^1.17.0-beta",
     "react-native-css": "^1.2.47",
     "react-native-device-info": "^0.9.9",
@@ -35,14 +36,17 @@
     "react-redux": "^5.0.2",
     "react-toolbox": "^2.0.0-beta.6",
     "redux": "^3.6.0",
+    "redux-form": "^6.6.3",
     "redux-logger": "^2.7.4",
     "redux-persist": "^4.0.1",
     "redux-saga": "^0.14.2",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
+    "styled-components": "^1.4.5",
     "tcomb-form-native": "^0.6.5"
   },
   "devDependencies": {
+    "@kadira/react-native-storybook": "^2.0.0",
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^3.13.1",
@@ -52,8 +56,11 @@
     "eslint-plugin-react": "^6.9.0",
     "jest": "18.1.0",
     "react-test-renderer": "~15.4.0-rc.4",
+    "reactotron-react-native": "^1.10.0",
+    "reactotron-redux": "^1.10.0",
+    "reactotron-redux-saga": "^1.10.0",
     "redux-devtools": "^3.3.2",
-    "@kadira/react-native-storybook": "^2.0.0"
+    "redux-saga-devtools": "^0.1.1"
   },
   "jest": {
     "preset": "react-native"

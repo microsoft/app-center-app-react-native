@@ -5,8 +5,7 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import t from 'tcomb-form-native';
 import ErrorMessage from './ErrorMessage';
 
-import { loginRequest } from '../actions/login';
-
+import { loginRequest } from '../login/action';
 
 var RNForm = t.form.Form;
 

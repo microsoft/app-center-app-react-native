@@ -1,1 +1,0 @@
-export const TOKENID = '1938077bc136d1b81c65c4d74fc4f593d9c28b02';

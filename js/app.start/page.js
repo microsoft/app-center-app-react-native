@@ -24,9 +24,43 @@
  *
  */
 
-import { AppRegistry } from 'react-native';
-import './ReactotronConfig';
-import setup from './js/setup';
-export default setup;
+import React from 'react';
+import { Text, View } from 'react-native';
+import Button from 'react-native-button';
+import Drawer from 'react-native-drawer';
 
-AppRegistry.registerComponent('MobileCenterReactNativeApp', () => setup);
+import ManageApp from './manage/container';
+
+export default class Start extends React.Component {
+
+  render() {
+    return (
+      <Drawer
+        ref={c => this.drawer = c}
+        type="overlay"
+        openDrawerOffset={0.2}
+        panCloseMask={0.2}
+        content={<ManageApp />}
+        side="right"
+        tapToClose
+        negotiatePan
+      >
+        <View>
+          <Button
+            style={{ fontSize: 20, color: 'green'}}
+            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, backgroundColor: 'orange'}}
+            styleDisabled={{ color: 'red' }}
+            onPress={() => this.drawer.open()}
+          >
+            Manage App
+          </Button>
+          <Text> Add Mobile Center’s SDK to your app. </Text>
+
+          <Text> 1. Integrate using CocoaPods </Text>
+          <Text> 2. Start the SDK </Text>
+          <Text> 3. Explore Data </Text>
+        </View>
+      </Drawer>
+    );
+  }
+}

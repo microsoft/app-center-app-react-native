@@ -25,8 +25,8 @@
  */
 
 import { AppRegistry } from 'react-native';
+import './ReactotronConfig';
 import setup from './js/setup';
-
 export default setup;
 
 AppRegistry.registerComponent('MobileCenterReactNativeApp', () => setup);
