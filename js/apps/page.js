@@ -7,7 +7,8 @@ import { StyleSheet,
   TouchableOpacity,
   Alert,
   Image,
-  Button
+  Button,
+  AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -28,7 +29,9 @@ export default class Apps extends React.Component {
   }
 
   onPressApp(app) {
-    Actions.tabbar2({app: app});
+    AsyncStorage.setItem('app', JSON.stringify(app) , () => {
+      Actions.tabbar2();
+    });
   }
 
   renderApp(app) {
@@ -48,8 +51,6 @@ export default class Apps extends React.Component {
                 {app.platform}
             </Text>
           </View>
-
-
         </View>
       </TouchableOpacity>
     );

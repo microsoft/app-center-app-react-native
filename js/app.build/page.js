@@ -77,26 +77,8 @@ export default class Build extends React.Component {
         tapToClose
         negotiatePan
       >
-        <View style={styles.container}>
-          <SearchBar
-            ref="searchBar"
-            placeholder="Search"
-          />
-          <ListView
-            style={styles.listview}
-            dataSource={this.state.dataSource}
-            renderRow={this.renderRow}
-            renderSectionHeader={this.renderSectionHeader}
-          />
-
-          <Button
-            style={{ fontSize: 20, color: 'green' }}
-            containerStyle={{ padding: 10, height: 45, overflow: 'hidden', borderRadius: 4, backgroundColor: 'orange' }}
-            styleDisabled={{ color: 'red' }}
-            onPress={() => alert('TODO: link to webview')}
-          >
-            Open on GitHub
-            </Button>
+        <View>
+          <Text> Coming Soon </Text>
         </View>
       </Drawer>
     );
@@ -107,16 +89,21 @@ var styles = StyleSheet.create({
   listview: {
     backgroundColor: '#B0C4DE',
   },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    paddingTop: Platform.OS === 'ios' ? 10 : 0
+  },
   header: {
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#3B5998',
-    flexDirection: 'row',
+    flexDirection: 'row', 
   },
   text: {
     color: 'white',
-    paddingHorizontal: 8,
+    paddingHorizontal: 8
   },
   rowText: {
     color: '#888888',

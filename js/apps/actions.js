@@ -1,4 +1,4 @@
-import { REQUEST_APPS, RECEIVE_APPS } from './constants';
+import { REQUEST_APPS, RECEIVE_APPS, SELECT_APP } from './constants';
 
 export function requestAppList() {
   return {

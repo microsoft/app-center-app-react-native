@@ -9,7 +9,7 @@ import AppContainer from './app/container';
 import StartContainer from './app.start/container';
 import BuildContainer from './app.build/container';
 import TestContainer from './app.test/container';
-import DistributeContainer from './app.distribute/container';
+import DistributeContainer from './appDistribute/container';
 import CrashContainer from './app.crash/container';
 import AnalyticsContainer from './app.analytics/container';
 
@@ -38,7 +38,7 @@ class MobileCenter extends React.Component {
       >
         <Scene key="root">
           <Scene key="splash" component={Splash} hideNavBar hideTabBar />
-          <Scene key="login" component={LoginContainer} hideNavBar hideTabBar  initial/>
+          <Scene key="login" component={LoginContainer} hideNavBar hideTabBar initial />
           <Scene key="tabbar" tabs pressOpacity={0.8} type={ActionConst.REPLACE} >
             <Scene
               key="apps"
@@ -62,58 +62,55 @@ class MobileCenter extends React.Component {
               iconName="md-person"
             />
           </Scene>
-          <Scene key="tabbar2">
+          <Scene key="tabbar2" tabs
+            tabBarStyle={tabstyles.tabBarStyle}
+            tabBarSelectedItemStyle={tabstyles.tabBarSelectedItemStyle}
+          >
             <Scene
-              key="main" tabs
-              tabBarStyle={tabstyles.tabBarStyle}
-              tabBarSelectedItemStyle={tabstyles.tabBarSelectedItemStyle}              
-            >
-              <Scene
-                key="build"
-                component={BuildContainer}
-                title="Build"
-                icon={TabIcon}
-                iconName="md-play"
-                onLeft={() => Actions.pop()}
-                leftTitle="Back"
-              />
-              <Scene
-                key="test"
-                component={TestContainer}
-                title="Test"
-                icon={TabIcon}
-                iconName="ios-checkmark-circle-outline"
-                onLeft={() => Actions.pop()}
-                leftTitle="Back"
-              />
-              <Scene
-                key="distribute"
-                component={DistributeContainer}
-                title="Distribute"
-                icon={TabIcon}
-                iconName="ios-git-branch"
-                onLeft={() => Actions.pop()}
-                leftTitle="Back"
-              />
-              <Scene
-                key="crash"
-                component={CrashContainer}
-                title="Crash"
-                icon={TabIcon}
-                iconName="ios-warning-outline"
-                onLeft={() => Actions.pop()}
-                leftTitle="Back"
-              />
-              <Scene
-                key="analytics"
-                component={AnalyticsContainer}
-                title="Analytics"
-                icon={TabIcon}
-                iconName="ios-stats-outline"
-                onLeft={() => Actions.pop()}
-                leftTitle="Back"
-              />
-            </Scene>
+              key="build"
+              component={BuildContainer}
+              title="Build"
+              icon={TabIcon}
+              iconName="md-play"
+              onLeft={() => Actions.pop()}
+              leftTitle="Back"
+            />
+            <Scene
+              key="test"
+              component={TestContainer}
+              title="Test"
+              icon={TabIcon}
+              iconName="ios-checkmark-circle-outline"
+              onLeft={() => Actions.pop()}
+              leftTitle="Back"
+            />
+            <Scene
+              key="distribute"
+              component={DistributeContainer}
+              title="Distribute"
+              icon={TabIcon}
+              iconName="ios-git-branch"
+              onLeft={() => Actions.pop()}
+              leftTitle="Back"
+            />
+            <Scene
+              key="crash"
+              component={CrashContainer}
+              title="Crash"
+              icon={TabIcon}
+              iconName="ios-warning-outline"
+              onLeft={() => Actions.pop()}
+              leftTitle="Back"
+            />
+            <Scene
+              key="analytics"
+              component={AnalyticsContainer}
+              title="Analytics"
+              icon={TabIcon}
+              iconName="ios-stats-outline"
+              onLeft={() => Actions.pop()}
+              leftTitle="Back"
+            />
           </Scene>
         </Scene>
       </RouterWithRedux>
@@ -154,7 +151,8 @@ const drawerStyles = {
 };
 
 const tabstyles = StyleSheet.create({
-  container: { flex: 1,
+  container: {
+    flex: 1,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',

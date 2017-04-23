@@ -3,6 +3,7 @@ import { reducer as form } from 'redux-form';
 import client from './auth/reducer';
 import login from './login/reducer';
 import apps from './apps/reducer';
+import appAnalysis from './app.analytics/reducer';
 import { ActionConst } from 'react-native-router-flux';
 
 const initialState = {
@@ -25,7 +26,8 @@ const IndexReducer = combineReducers({
   client,
   login,
   form,
-  apps
+  apps,
+  appAnalysis
 });
 
 export default IndexReducer;

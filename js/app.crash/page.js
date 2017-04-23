@@ -31,7 +31,7 @@ export default class Crash extends React.Component {
   render() {
     return (
       <View>
-        <Text> Crash </Text>
+        <Text> Coming Soon </Text>
       </View>
     );
   }

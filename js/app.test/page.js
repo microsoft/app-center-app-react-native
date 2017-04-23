@@ -31,7 +31,7 @@ export default class Test extends React.Component {
   render() {
     return (
       <View>
-        <Text> Mobile Center Test includes a free trial for UI testing. </Text>
+        <Text> Coming Soon </Text>
       </View>
     );
   }

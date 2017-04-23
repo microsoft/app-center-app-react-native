@@ -2,7 +2,6 @@ import { takeEvery, put, call, fork, take } from 'redux-saga/effects';
 import { REQUEST_APPS, RECEIVE_APPS, RECEIVE_APPS_ERROR } from './constants';
 import { handleApiErrors } from '../lib/api-errors';
 import { toastShort } from '../utils/ToastUtil';
-import { appsAPI } from '../utils/RequestUtil';
 import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Reactotron from 'reactotron-react-native';

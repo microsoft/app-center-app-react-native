@@ -32,9 +32,9 @@ function loginApi(username, password) {
         }
     })
     .then(handleApiErrors)
-    .then(response => response.json())    
+    .then(response => response.json())
     .then(token => token.api_token)
-    .catch((error) => { throw error; });
+    .then(tokenId => AsyncStorage.setItem('token', tokenId));
 }
 
 function* logout() {
@@ -46,14 +46,9 @@ function* logout() {
 function* loginFlow(username, password) {
     let token;
     try {
-        token = yield AsyncStorage.getItem('token');
-        if (token) {
-            yield AsyncStorage.removeItem('token');
-        }
         token = yield call(loginApi, username, password);
-        yield put(setClient(token));
+        //yield put(setClient(token));
         yield put({ type: LOGIN_SUCCESS });
-        yield AsyncStorage.setItem('token', token);
         Actions.tabbar();
     } catch (error) {
         yield put({ type: LOGIN_ERROR, error });
