@@ -23,6 +23,14 @@ function* fetchApps() {
     let token = yield AsyncStorage.getItem('token');
     if (!token) Actions.login();
     const response = yield call(appsApi, token);
+
+    // Sort the apps alphbetically, for display purposes
+    response.sort(function (app1, app2) {
+      return app1.display_name.localeCompare(app2.display_name);
+    });
+
+    // TODO: Maybe show organization apps differently, but for now they are in the single overall app list
+    
     yield put({ type: RECEIVE_APPS, response });
   } catch (error) {
     yield put({ type: RECEIVE_APPS_ERROR, error });
