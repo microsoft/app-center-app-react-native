@@ -8,13 +8,35 @@ import { Field } from 'redux-form';
 import LoadingView from './components/LoadingView';
 import MessagesView from './components/MessagesView';
 
+
+
+const SignInButton = (props) => {
+    return (
+        <TouchableHighlight 
+            onPress={props.onPress}
+            style={styles.signInButton}>
+            <Text style={{color: 'white', fontSize: 20}}>Sign in</Text>
+        </TouchableHighlight>
+    );
+}
+
 const propTypes = {
   login: PropTypes.object.isRequired,
   loginAction: PropTypes.func
 };
 
-const renderInput = ({ input: { onChange, ...restInput } }) => {
-  return (<TextInput style={styles.input} onChangeText={onChange} {...restInput} />);
+
+
+const renderUsernameInput = ({ input: { onChange, ...restInput } }) => {
+  return (
+    <TextInput placeholder="Email or username" autoCapitalize="none" style={styles.input} onChangeText={onChange} {...restInput} />
+  );
+}
+
+const renderPasswordInput = ({ input: { onChange, ...restInput } }) => {
+  return (
+    <TextInput placeholder="Password" autoCapitalize="none" secureTextEntry style={styles.input} onChangeText={onChange} {...restInput} />
+  );
 }
 
 class Login extends React.Component {
@@ -26,18 +48,16 @@ class Login extends React.Component {
 
   submit(values) {
     const { loginAction } = this.props;
-    loginAction(values.email, values.password);
+    loginAction(values.username, values.password);
   }
 
   renderForm() {
     const { handleSubmit } = this.props;
     return (
       <View>
-        <Text>UserName: </Text>
-        <Field name="email" component={renderInput} />
-        <Text>Password: </Text>
-        <Field name="password" component={renderInput} />
-        <Button onPress={handleSubmit(this.submit)} title="Submit" color="#48BBEC" />
+        <Field name="username" component={renderUsernameInput} />
+        <Field name="password" component={renderPasswordInput} />
+        <SignInButton onPress={handleSubmit(this.submit)} title="Submit" color="#48BBEC"  />
       </View>
     );
   }
@@ -80,9 +100,9 @@ class Login extends React.Component {
 let styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#CCC',
+    flex: 1
   },
   backgroundImg: {
     width: 150,
@@ -95,24 +115,21 @@ let styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 30
   },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    justifyContent: 'center'
-  },
   input: {
+    backgroundColor: 'white',
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 0.3,
+    marginTop: 10,
     height: 37,
-    width: 250,
+    padding: 4,
     justifyContent: 'center'
+  },
+  signInButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#34A853',
+    marginTop: 20
   }
 });
 
