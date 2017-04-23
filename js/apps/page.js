@@ -11,6 +11,7 @@ import { StyleSheet,
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Identicon from '../components/Identicon'
 
 export default class Apps extends React.Component {
 
@@ -38,17 +39,13 @@ export default class Apps extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.onPressApp(app)}>
         <View style={styles.containerItem}>
-          <Image style={styles.itemImg}>
-            <Text>
-              AppImg
-            </Text>
-          </Image>
+          <Identicon value={app.display_name[0].toUpperCase()} size="45"/>
           <View style={styles.itemRightContent}>
-            <Text style={styles.title}>
+            <Text style={styles.appName}>
               {app.display_name}
             </Text>
-            <Text style={styles.userName}>
-                {app.platform}
+            <Text style={styles.appDescription}>
+                {app.description}
             </Text>
           </View>
         </View>
@@ -89,10 +86,17 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
     borderBottomWidth: 1
   },
-  title: {
+  appName: {
     fontSize: 18,
     textAlign: 'left',
     color: 'black'
+  },
+  appDescription: {
+    flex: 1,
+    fontSize: 14,
+    color: '#87CEFA',
+    marginTop: 5,
+    marginRight: 5
   },
   listView: {
     backgroundColor: '#eeeeec'
@@ -150,6 +154,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   itemRightContent: {
+    marginLeft: 20,
     flex: 1,
     flexDirection: 'column'
   },
@@ -157,13 +162,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  userName: {
-    flex: 1,
-    fontSize: 14,
-    color: '#87CEFA',
-    marginTop: 5,
-    marginRight: 5
   },
   timeAgo: {
     fontSize: 14,

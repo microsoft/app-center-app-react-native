@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { storiesOf, action, linkTo } from '@kadira/react-native-storybook';
+import Identicon from '../../js/components/Identicon'
 
 import Button from './Button';
 import CenterView from './CenterView';
@@ -24,4 +25,13 @@ storiesOf('Button', module)
     <Button onPress={action('clicked-emoji')}>
       <Text>😀 😎 👍 💯</Text>
     </Button>
+  ));
+
+storiesOf('App Icon', module)
+  .add('default', () => (
+    <View>
+      <Identicon value="A" size="45"/>
+      <Identicon value="B" size="45"/>
+      <Identicon value="C" size="45"/>
+    </View>
   ));
