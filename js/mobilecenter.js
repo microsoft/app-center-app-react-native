@@ -27,9 +27,7 @@ class MobileCenter extends React.Component {
   constructor() {
     super();
     CodePush.sync(
-      { installMode: CodePush.InstallMode.ON_NEXT_RESTART, updateDialog: true },
-      this.codePushStatusDidChange.bind(this),
-      this.codePushDownloadDidProgress.bind(this)
+      { installMode: CodePush.InstallMode.ON_NEXT_RESTART, updateDialog: true }
     );
   }
 
