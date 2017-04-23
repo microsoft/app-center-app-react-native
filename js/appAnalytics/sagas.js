@@ -1,3 +1,4 @@
+import { takeEvery, put, call, fork, take } from 'redux-saga/effects';
 import { 
     REQUEST_ACTIVE_DEVICE_COUNTS, 
     RECEIVE_ACTIVE_DEVICE_COUNTS,
@@ -7,11 +8,11 @@ import { handleApiErrors } from '../lib/api-errors';
 import { AsyncStorage } from 'react-native';
 import Reactotron from 'reactotron-react-native';
 import { Actions } from 'react-native-router-flux';
-import { moment } from 'moment';
+import moment from 'moment';
 import { toastShort } from '../utils/ToastUtil';
 
 function appAnalysisDeviceCountApi(token, ownerName, appName, startDate) {
-    return fetch(`https://api.mobile.azure.com/v0.1/apps/${ownerName}/${appName}/analytics/active_device_counts?start=${startDate}`,{
+    return fetch(`https://api.mobile.azure.com/v0.1/apps/${ownerName}/${appName}/analytics/active_device_counts?start=2017-04-10`,{
         method: 'GET',
         headers: {
             'ZUMO-API-VERSION': '2.0.0',
@@ -25,12 +26,8 @@ function appAnalysisDeviceCountApi(token, ownerName, appName, startDate) {
 
 function* fetchAppAnalysisDeviceCount() {
     try {
-
-      Reactotron.log("test test test");
-
       let token = yield AsyncStorage.getItem('token');
       if (!token) Actions.login();
-
       let ownerName, appName, startDate;
       yield AsyncStorage.getItem('app', (error, result) => {
           let appJSON = JSON.parse(result);
@@ -38,14 +35,9 @@ function* fetchAppAnalysisDeviceCount() {
           appName = appJSON.name;
       });
       //demo purpose ^_&
-      startDate = moment().subtract(7, "days");
-
-      Reactotron.log(ownerName);
-      Reactotron.log(appName);
-      Reactotron.log(startDate);
-
+      startDate = JSON.stringify(moment().subtract(7, 'days').format());
       const response = yield call(appAnalysisDeviceCountApi, token, ownerName, appName, startDate);
-
+    //   Reactotron.log(response);
       yield put({type: RECEIVE_ACTIVE_DEVICE_COUNTS, response});
     } catch (error) {
       yield put({type: RECEIVE_ACTIVE_DEVICE_COUNTS_ERRORS, error});
@@ -54,12 +46,9 @@ function* fetchAppAnalysisDeviceCount() {
 }
 
 function* watchFetchAppAnalysisDeviceCount() {
-    try {
-        while (true) {
-            yield take(REQUEST_ACTIVE_DEVICE_COUNTS);
-            yield fork(fetchAppAnalysisDeviceCount);
-        }}
-    catch (error) {
+    while (true) {
+        yield take(REQUEST_ACTIVE_DEVICE_COUNTS);
+        yield fork(fetchAppAnalysisDeviceCount);
     }
 }
 

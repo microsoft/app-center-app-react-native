@@ -21,7 +21,7 @@ export default function appAnalysis(state = initState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 successful: true,
-                deviceCounts: action.activeDevices
+                deviceCounts: action.response
             });
         case RECEIVE_ACTIVE_DEVICE_COUNTS_ERRORS:
             return Object.assign({}, state, {

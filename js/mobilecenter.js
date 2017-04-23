@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Navigator, Image } from 'react-native';
 import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import User from './user/page';
+import UserContainer from './user/container';
 import Notification from './components/Notification';
 import AppsContainer from './apps/container';
 import AppContainer from './app/container';
@@ -11,7 +11,7 @@ import BuildContainer from './app.build/container';
 import TestContainer from './app.test/container';
 import DistributeContainer from './appDistribute/container';
 import CrashContainer from './app.crash/container';
-import AnalyticsContainer from './app.analytics/container';
+import AnalyticsContainer from './appAnalytics/container';
 
 import Drawer from 'react-native-drawer';
 import LoginContainer from './login/container';
@@ -56,7 +56,7 @@ class MobileCenter extends React.Component {
             />
             <Scene
               key="user"
-              component={User}
+              component={UserContainer}
               title="You"
               icon={TabIcon}
               iconName="md-person"

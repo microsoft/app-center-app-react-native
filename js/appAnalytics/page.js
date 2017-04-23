@@ -16,8 +16,9 @@ export default class Analytics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({ 
-        rowHasChanged: (r1, r2) => r1 !== r2 })
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      })
     };
   }
 
@@ -44,14 +45,13 @@ export default class Analytics extends React.Component {
   }
 
   render() {
-    const { appAnalysis } = this.props;
-
+    const { appAnalysisState } = this.props;
     return (
-      <View>
-       <ListView
+      <View style={styles.container}>
+        <ListView
           initialListSize={1}
-          dataSource={this.state.dataSource.cloneWithRows(appAnalysis)}
-          renderRow={row => this.renderAnalysis(row)}
+          dataSource={this.state.dataSource.cloneWithRows(appAnalysisState.deviceCounts)}
+          renderRow={row => this.renderApp(row)}
           enableEmptySections={true}
         />
       </View>
