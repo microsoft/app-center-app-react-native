@@ -64,5 +64,9 @@
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
     </array>
+    <key>CodePushDeploymentKey</key>
+    <string>xSoQGZQ2DkdqJ9fC3xN_m6Zfpssp11bf891f-0470-4b1e-8535-6ac6989314e8</string>
+    <key>CodePushServerURL</key>
+    <string>https://codepush-int-legacy.azurewebsites.net/</string>
   </dict>
 </plist>

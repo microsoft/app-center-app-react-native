@@ -19,16 +19,20 @@ import TabIcon from './components/tabicon';
 import Splash from './components/Splash';
 import NavigationDrawer from './components/navigationDrawer';
 import ManageApp from './components/app/manageApp';
-
 const RouterWithRedux = connect()(Router);
-
-// const appBuildImg = require('../img/app-build.png');
-// const appTestImg  = require('../img/app-test.png');
-// const appDistributeImg = require('../img/app-distribute.png');
-// const appCrashImg = require('../img/app-crashes.png');
-// const appAnalyticsImg = require('../img/app-analytics.png');
+import CodePush from "react-native-code-push";
 
 class MobileCenter extends React.Component {
+
+  constructor() {
+    super();
+    CodePush.sync(
+      { installMode: CodePush.InstallMode.ON_NEXT_RESTART, updateDialog: true },
+      this.codePushStatusDidChange.bind(this),
+      this.codePushDownloadDidProgress.bind(this)
+    );
+  }
+
   render() {
     return (
       <RouterWithRedux
@@ -165,4 +169,8 @@ const tabstyles = StyleSheet.create({
   },
 });
 
-export default MobileCenter;
+let codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
+
+MobileCenterApp = CodePush(codePushOptions)(MobileCenter);
+
+export default MobileCenterApp;
