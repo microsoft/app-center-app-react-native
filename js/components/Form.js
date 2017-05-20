@@ -14,7 +14,7 @@ var User = t.struct({
     password: t.String
 });
 
-//Encapsulate tcomb-form-native https://github.com/gcanti/tcomb-form-native#api
+// Encapsulate tcomb-form-native https://github.com/gcanti/tcomb-form-native#api
 
 var options = {}; // optional rendering options (see documentation)
 
