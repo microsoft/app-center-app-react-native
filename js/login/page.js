@@ -11,14 +11,15 @@ import MessagesView from './components/MessagesView';
 
 
 const SignInButton = (props) => {
-    return (
-        <TouchableHighlight 
-            onPress={props.onPress}
-            style={styles.signInButton}>
-            <Text style={{color: 'white', fontSize: 20}}>Sign in</Text>
-        </TouchableHighlight>
-    );
-}
+  return (
+    <TouchableHighlight
+      onPress={props.onPress}
+      style={styles.signInButton}
+    >
+      <Text style={{ color: 'white', fontSize: 20 }}>Sign in</Text>
+    </TouchableHighlight>
+  );
+};
 
 const propTypes = {
   login: PropTypes.object.isRequired,
@@ -26,18 +27,30 @@ const propTypes = {
 };
 
 
-
 const renderUsernameInput = ({ input: { onChange, ...restInput } }) => {
   return (
-    <TextInput placeholder="Email or username" autoCapitalize="none" style={styles.input} onChangeText={onChange} {...restInput} />
+    <TextInput
+      placeholder="Email or username"
+      autoCapitalize="none"
+      style={styles.input}
+      onChangeText={onChange}
+      {...restInput}
+    />
   );
-}
+};
 
 const renderPasswordInput = ({ input: { onChange, ...restInput } }) => {
   return (
-    <TextInput placeholder="Password" autoCapitalize="none" secureTextEntry style={styles.input} onChangeText={onChange} {...restInput} />
+    <TextInput
+      placeholder="Password"
+      autoCapitalize="none"
+      secureTextEntry
+      style={styles.input}
+      onChangeText={onChange}
+      {...restInput}
+    />
   );
-}
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -57,7 +70,7 @@ class Login extends React.Component {
       <View>
         <Field name="username" component={renderUsernameInput} />
         <Field name="password" component={renderPasswordInput} />
-        <SignInButton onPress={handleSubmit(this.submit)} title="Submit" color="#48BBEC"  />
+        <SignInButton onPress={handleSubmit(this.submit)} title="Submit" color="#48BBEC" />
       </View>
     );
   }
@@ -76,22 +89,25 @@ class Login extends React.Component {
 
     if (requesting) {
       return <LoadingView />;
-    } 
+    }
 
     pageContent = this.renderForm();
 
     if (errors.length) {
-      messageContent = <MessagesView errors = {errors} />
+      messageContent = <MessagesView errors={errors} />;
     }
 
     return (
-        <View style={styles.container}>
-          <Image style={styles.backgroundImg} source={require('../img/splash.png')} />
-          <Text style={styles.title}>
-            Login
-          </Text>
-          { pageContent }
-          { messageContent }
+      <View style={styles.container}>
+        <Image
+          style={styles.backgroundImg}
+          source={require('../img/splash.png')}
+        />
+        <Text style={styles.title}>
+          Login
+        </Text>
+        { pageContent }
+        { messageContent }
       </View>
     );
   }

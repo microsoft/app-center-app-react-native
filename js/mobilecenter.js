@@ -22,6 +22,8 @@ import Splash from './components/Splash';
 import NavigationDrawer from './components/navigationDrawer';
 import ManageApp from './components/app/manageApp';
 
+import AppWithNavigationState from './router';
+
 const RouterWithRedux = connect()(Router);
 
 class MobileCenter extends React.Component {
@@ -66,7 +68,8 @@ class MobileCenter extends React.Component {
               iconName="md-person"
             />
           </Scene>
-          <Scene key="tabbar2" tabs
+          <Scene
+            key="tabbar2" tabs
             tabBarStyle={tabstyles.tabBarStyle}
             tabBarSelectedItemStyle={tabstyles.tabBarSelectedItemStyle}
           >
@@ -171,6 +174,8 @@ const tabstyles = StyleSheet.create({
 
 let codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
 
-const MobileCenterApp = CodePush(codePushOptions)(MobileCenter);
+// const MobileCenterApp = CodePush(codePushOptions)(MobileCenter);
+
+const MobileCenterApp = CodePush(codePushOptions)(AppWithNavigationState);
 
 export default MobileCenterApp;

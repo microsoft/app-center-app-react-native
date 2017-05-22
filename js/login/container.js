@@ -8,22 +8,22 @@ import { loginRequest } from './action';
 class LoginContainer extends React.Component {
   render() {
     return (
-        <Login {...this.props} />
+      <Login {...this.props} />
     );
   }
 }
 
-function mapStateToProps (state) {
-  return {login: state.login};
+const mapStateToProps = (state) => {
+  return { login: state.login };
 };
 
 const mapDispatchToProps = (dispatch) => {
   const loginAction = bindActionCreators(loginRequest, dispatch);
   return {
-    'loginAction': loginAction
+    loginAction
   };
 };
-  
+
 const connected = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 
 const formed = reduxForm({

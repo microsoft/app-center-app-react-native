@@ -15,9 +15,8 @@ import {
  */
 export function loginRequest (username, password) {
   return {
-    type: LOGIN_REQUEST, 
-    username, 
+    type: LOGIN_REQUEST,
+    username,
     password
   };
 }
-

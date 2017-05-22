@@ -11,14 +11,14 @@ import { StyleSheet,
   AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Identicon from '../components/Identicon'
+import Identicon from '../components/Identicon';
 
 export default class Apps extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({ 
+      dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2 })
     };
     this.onPressApp = this.onPressApp.bind(this);
