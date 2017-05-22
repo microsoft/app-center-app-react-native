@@ -5,7 +5,7 @@ import UserSaga from './user/sagas';
 import AppAnalyticsSaga from './appAnalytics/sagas';
 import AppDistributeSaga from './appDistribute/sagas';
 
-export default function* IndexSaga () {
+export default function* IndexSaga() {
   yield [
     LoginSaga(),
     AppsSaga(),

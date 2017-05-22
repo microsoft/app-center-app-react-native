@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, Navigator, Image } from 'react-native';
-import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
-import UserContainer from './user/container';
+// import { StyleSheet, Navigator, Image } from 'react-native';
+// import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
+// import { connect } from 'react-redux';
+// import Drawer from 'react-native-drawer';
+import CodePush from 'react-native-code-push';
+import AppWithNavigationState from './router';
+
+/*import UserContainer from './user/container';
 import Notification from './components/Notification';
 import AppsContainer from './apps/container';
 import AppContainer from './app/container';
@@ -13,14 +17,14 @@ import DistributeContainer from './appDistribute/container';
 import CrashContainer from './app.crash/container';
 import AnalyticsContainer from './appAnalytics/container';
 
-import Drawer from 'react-native-drawer';
 import LoginContainer from './login/container';
 import TabIcon from './components/tabicon';
 import Splash from './components/Splash';
 import NavigationDrawer from './components/navigationDrawer';
 import ManageApp from './components/app/manageApp';
+
+
 const RouterWithRedux = connect()(Router);
-import CodePush from "react-native-code-push";
 
 class MobileCenter extends React.Component {
 
@@ -64,7 +68,8 @@ class MobileCenter extends React.Component {
               iconName="md-person"
             />
           </Scene>
-          <Scene key="tabbar2" tabs
+          <Scene
+            key="tabbar2" tabs
             tabBarStyle={tabstyles.tabBarStyle}
             tabBarSelectedItemStyle={tabstyles.tabBarSelectedItemStyle}
           >
@@ -165,10 +170,12 @@ const tabstyles = StyleSheet.create({
   tabBarSelectedItemStyle: {
     backgroundColor: '#ddd',
   },
-});
+});*/
 
-let codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
+const codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
 
-MobileCenterApp = CodePush(codePushOptions)(MobileCenter);
+// const MobileCenterApp = CodePush(codePushOptions)(MobileCenter);
+
+const MobileCenterApp = CodePush(codePushOptions)(AppWithNavigationState);
 
 export default MobileCenterApp;

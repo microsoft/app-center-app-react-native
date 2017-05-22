@@ -3,8 +3,9 @@ import {
   Dimensions,
   Animated
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import store from 'react-native-simple-store';
+import * as navTypes from '../router/constants';
 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
@@ -26,7 +27,8 @@ export default class Splash extends React.Component {
       store.get('isInit')
         .then((isInit) => {
           if (!isInit) {
-            Actions.login();
+            // Actions.login();
+            this.props.navigation.dispatch({ type: navTypes.RESET_TO_LOGIN });
           }
         });
     }, 1000);

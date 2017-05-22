@@ -1,3 +1,3 @@
-export const Container = ({ children }) => (   
-        { children }
+export const Container = ({ children }) => (
+  { children }
 );

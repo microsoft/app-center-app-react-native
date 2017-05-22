@@ -1,10 +1,15 @@
 import { takeEvery, put, call, fork, take } from 'redux-saga/effects';
-import { REQUEST_USER, RECEIVE_USER, RECEIVE_USER_ERROR} from './constants';
+import { AsyncStorage } from 'react-native';
+// import { Actions } from 'react-native-router-flux';
+import Reactotron from 'reactotron-react-native';
 import { handleApiErrors } from '../lib/api-errors';
 import { toastShort } from '../utils/ToastUtil';
-import { AsyncStorage } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import Reactotron from 'reactotron-react-native';
+import {
+  REQUEST_USER,
+  RECEIVE_USER,
+  RECEIVE_USER_ERROR
+} from './constants';
+import * as navTypes from '../router/constants';
 
 function userApi(token) {
   return fetch("https://api.mobile.azure.com/v0.1/user", {
@@ -21,7 +26,8 @@ function userApi(token) {
 function* fetchUser() {
   try {
     let token = yield AsyncStorage.getItem('token');
-    if (!token) Actions.login();
+    // if (!token) Actions.login();
+    if (!token) yield put({ type: navTypes.RESET_TO_LOGIN });
     const response = yield call(userApi, token);
     yield put({ type: RECEIVE_USER, response });
   } catch (error) {

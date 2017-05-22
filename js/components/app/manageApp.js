@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from "react-native";
 import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {

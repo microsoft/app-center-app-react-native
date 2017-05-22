@@ -10,15 +10,15 @@ import { StyleSheet,
   Button,
   AsyncStorage
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import Identicon from '../components/Identicon'
+// import { Actions } from 'react-native-router-flux';
+import Identicon from '../components/Identicon';
 
 export default class Apps extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({ 
+      dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2 })
     };
     this.onPressApp = this.onPressApp.bind(this);
@@ -30,8 +30,8 @@ export default class Apps extends React.Component {
   }
 
   onPressApp(app) {
-    AsyncStorage.setItem('app', JSON.stringify(app) , () => {
-      Actions.tabbar2();
+    AsyncStorage.setItem('app', JSON.stringify(app), () => {
+      // Actions.tabbar2();
     });
   }
 
@@ -45,7 +45,7 @@ export default class Apps extends React.Component {
               {app.display_name}
             </Text>
             <Text style={styles.appDescription}>
-                {app.description}
+              {app.description}
             </Text>
           </View>
         </View>
@@ -54,7 +54,7 @@ export default class Apps extends React.Component {
   }
 
   render() {
-   const { apps } = this.props;
+    const { apps } = this.props;
     return (
       <View style={styles.container}>
         <ListView

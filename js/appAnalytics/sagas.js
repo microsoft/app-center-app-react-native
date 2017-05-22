@@ -1,15 +1,18 @@
 import { takeEvery, put, call, fork, take } from 'redux-saga/effects';
-import { 
-    REQUEST_ACTIVE_DEVICE_COUNTS, 
+
+import { AsyncStorage } from 'react-native';
+import Reactotron from 'reactotron-react-native';
+// import { Actions } from 'react-native-router-flux';
+import moment from 'moment';
+import {
+    REQUEST_ACTIVE_DEVICE_COUNTS,
     RECEIVE_ACTIVE_DEVICE_COUNTS,
     RECEIVE_ACTIVE_DEVICE_COUNTS_ERRORS
 } from './constants';
 import { handleApiErrors } from '../lib/api-errors';
-import { AsyncStorage } from 'react-native';
-import Reactotron from 'reactotron-react-native';
-import { Actions } from 'react-native-router-flux';
-import moment from 'moment';
 import { toastShort } from '../utils/ToastUtil';
+
+import * as navTypes from '../router/constants';
 
 function appAnalysisDeviceCountApi(token, ownerName, appName, startDate) {
     return fetch(`https://api.mobile.azure.com/v0.1/apps/${ownerName}/${appName}/analytics/active_device_counts?start=2017-04-10`,{
@@ -27,7 +30,8 @@ function appAnalysisDeviceCountApi(token, ownerName, appName, startDate) {
 function* fetchAppAnalysisDeviceCount() {
     try {
       let token = yield AsyncStorage.getItem('token');
-      if (!token) Actions.login();
+      // if (!token) Actions.login();
+      if (!token) yield put({ type: navTypes.RESET_TO_LOGIN });
       let ownerName, appName, startDate;
       yield AsyncStorage.getItem('app', (error, result) => {
           let appJSON = JSON.parse(result);
