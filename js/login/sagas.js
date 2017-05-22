@@ -1,6 +1,6 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects';
 import Reactotron from 'reactotron-react-native';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { NavigationActions } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
 

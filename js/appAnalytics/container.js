@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Analytics from './page';
-import { REQUEST_ACTIVE_DEVICE_COUNTS } from './actions';
-import { requestActiveDeviceCounts } from './actions';
+import {
+  REQUEST_ACTIVE_DEVICE_COUNTS,
+  requestActiveDeviceCounts
+} from './actions';
 
 class AnalyticsContainer extends React.Component {
   render() {

@@ -3,7 +3,7 @@ import {
   StyleSheet, Text,
   View, TextInput, TouchableHighlight, Alert, Image, TouchableOpacity, Button
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { Field } from 'redux-form';
 import LoadingView from './components/LoadingView';
 import MessagesView from './components/MessagesView';

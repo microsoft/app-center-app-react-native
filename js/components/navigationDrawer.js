@@ -1,3 +1,4 @@
+/*
 import React, { PropTypes } from 'react';
 import Drawer from 'react-native-drawer';
 import { DefaultRenderer, Actions } from 'react-native-router-flux';
@@ -26,3 +27,5 @@ class NavigationDrawer extends React.Component {
 NavigationDrawer.propTypes = propTypes;
 
 export default NavigationDrawer;
+*/
+/* No Used */

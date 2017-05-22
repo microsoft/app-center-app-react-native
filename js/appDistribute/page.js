@@ -11,7 +11,7 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 export default class Distribute extends React.Component {
 
