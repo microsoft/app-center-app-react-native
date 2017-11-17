@@ -1,12 +1,12 @@
-# Mobile Center Mobile App
+# App Center Mobile App
 
-# <a href='https://www.visualstudio.com/vs/mobile-center/'><img src='https://www.visualstudio.com/wp-content/uploads/2016/11/continuous-everything@2x-400x362.png' height='80'></a>
+# <a href='https://www.visualstudio.com/vs/app-center/'><img src='https://www.visualstudio.com/wp-content/uploads/2016/11/continuous-everything@2x-400x362.png' height='80'></a>
 
-[Microsoft Mobile Center](https://www.visualstudio.com/vs/mobile-center/) is mission control to help mobile developers build mobile apps. 
+[Visual Studio App Center](https://www.visualstudio.com/vs/app-center/) is mission control to help mobile developers build mobile apps. 
 
-Microsoft Mobile Center Mobile App complements Microsoft Mobile Center portal to let mobile developers track developed apps' usage from customers in a light and mobile manner. The source code is 100% based on **React/React Native/Redux**. 
+Visual Studio App Center Mobile App complements App Center portal to let mobile developers track developed apps' usage from customers in a light and mobile manner. The source code is 100% based on **React/React Native/Redux**. 
 
-**Notes** Mobile Center Mobile App will support all features that you (avid mobile developer) want. It is not a duplicate of mobile center portal. Thus, we care your ideas. Open issues now to let us know what we should go next. 
+**Notes** Visual Studio App Center App will support all features that you (avid mobile developer) want. It is not a duplicate of App Center portal. Thus, we care your ideas. Open issues now to let us know what we should go next. 
 
 ## Code Structure
 
