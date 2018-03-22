@@ -56,7 +56,7 @@ export function loginAPI({ username, password }) {
 export function appsAPI({ tokenID }) {
   return fetchAPI('https://api.mobile.azure.com/v0.1/apps', {
     headers: {
-      'Content-Type': 'applicatin/json',
+      'Content-Type': 'application/json',
       'X-API-Token': tokenID
     },
     method: 'GET'
